@@ -1,3 +1,10 @@
+@php
+
+$prefix = Request::route()->getPrefix();
+$route = Route::current()->getName();
+@endphp
+
+
 <!-- Sidebar -->
 <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
@@ -12,7 +19,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
             data-accordion="false">
             <li class="nav-item">
-                <a href="{{ route('home') }}" class="nav-link">
+                <a href="{{ route('home') }}" class="nav-link {{($route == 'home')?'active':''}}">
                     <i class="nav-icon fas fa-th"></i>
                     <p>
                         {{ __('Dashboard') }}
@@ -21,7 +28,16 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{ route('users.index') }}" class="nav-link">
+                <a href="{{ route('familyprofile.index') }}"  class="nav-link {{($route == 'familyprofile.index')?'active':''}}">
+                    <i class="nav-icon far fa-address-card"></i>
+                    <p>
+                        Family Profile
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{ route('users.index') }}" class="nav-link {{($route == 'users.index')?'active':''}}">
                     <i class="nav-icon fas fa-users"></i>
                     <p>
                         {{ __('Users') }}
