@@ -126,158 +126,149 @@
         <div class="modal-dialog modal-dialog-centeredmodal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title text-primary" id="exampleModalLabel">Add New Product</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title text-primary" id="exampleModalLabel">Add new Household/Family</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="#" method="POST" id="add_product_form" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body p-4 bg-light">
-                    <div class="row">
-                        <div class="col-lg mb-3">
-                            <label for="p_name">Lastname</label>
-                            <input type="text" name="p_name" class="form-control" placeholder="Lastname" required>
+                    @csrf
+                    <div class="modal-body p-4 bg-light">
+                        <div class="row">
+                            <div class="col-lg mb-3">
+                                <label for="p_name">Lastname</label>
+                                <input type="text" name="p_name" class="form-control" placeholder="Lastname" required>
+                            </div>
+                            <div class="col-lg mb-3">
+                                <label for="p_unit">Firstname</label>
+                                <input type="text" name="p_unit" class="form-control" placeholder="Firstname" required>
+                            </div>
+                            <div class="col-lg mb-3">
+                                <label for="p_unit">Middlename</label>
+                                <input type="text" name="p_unit" class="form-control" placeholder="Middlename">
+                            </div>
                         </div>
-                        <div class="col-lg mb-3">
-                            <label for="p_unit">Firstname</label>
-                            <input type="text" name="p_unit" class="form-control" placeholder="Firstname" required>
-                        </div>
-                        <div class="col-lg mb-3">
-                            <label for="p_unit">Middlename</label>
-                            <input type="text" name="p_unit" class="form-control" placeholder="Middlename">
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-lg mb-3">
-                            <label for="p_name">Address</label>
-                            <input type="text" name="p_name" class="form-control" placeholder="Address" required>
+                        <div class="row">
+                            <div class="col-lg mb-3">
+                                <label for="p_name">Address</label>
+                                <input type="text" name="p_name" class="form-control" placeholder="Address" required>
+                            </div>
+                            <div class="col-lg mb-3">
+                                <label for="p_unit">Birthdate</label>
+                                <input type="date" name="p_unit" class="form-control" placeholder="Birthdate" required>
+                            </div>
+                            <div class="col-lg mb-3">
+                                <label for="p_unit">Age</label>
+                                <input type="number" name="p_unit" class="form-control" placeholder="Age">
+                            </div>
                         </div>
-                        <div class="col-lg mb-3">
-                            <label for="p_unit">Birthdate</label>
-                            <input type="date" name="p_unit" class="form-control" placeholder="Birthdate" required>
+                        <div class="row">
+                            <div class="col-lg mb-3">
+                                <label for="p_name">Civil Status</label>
+                                <input type="text" name="p_name" class="form-control" placeholder="Civil Status" required>
+                            </div>
+                            <div class="col-lg mb-3">
+                                <label for="p_unit">Monthly Income</label>
+                                <input type="number" name="p_unit" class="form-control" placeholder="Monthly Income" required>
+                            </div>
                         </div>
-                        <div class="col-lg mb-3">
-                            <label for="p_unit">Age</label>
-                            <input type="number" name="p_unit" class="form-control" placeholder="Age">
+                        <div class="row">
+                            <div class="col-lg mb-3">
+                                <label for="p_name">Occupation</label>
+                                <input type="text" name="p_name" class="form-control" placeholder="Occupation" required>
+                            </div>
+                            <div class="col-lg mb-3">
+                                <label for="p_unit">Educational Level</label>
+                                <input type="text" name="p_unit" class="form-control" placeholder="Educational Level" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg mb-3">
-                            <label for="p_name">Civil Status</label>
-                            <input type="text" name="p_name" class="form-control" placeholder="Civil Status" required>
-                        </div>
-                        <div class="col-lg mb-3">
-                            <label for="p_unit">Monthly Income</label>
-                            <input type="number" name="p_unit" class="form-control" placeholder="Monthly Income" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg mb-3">
-                            <label for="p_name">Occupation</label>
-                            <input type="text" name="p_name" class="form-control" placeholder="Occupation" required>
-                        </div>
-                        <div class="col-lg mb-3">
-                            <label for="p_unit">Educational Level</label>
-                            <input type="text" name="p_unit" class="form-control" placeholder="Educational Level" required>
-                        </div>
-                    </div>
 
-                    {{-- Spouse info --}}
-                    <div class="row">
-                        <div class="col-lg mb-3">
-                            <label for="p_name">Spouse name(Live in Partner)</label>
-                            <input type="text" name="p_name" class="form-control" placeholder="Occupation" required>
+                        {{-- Spouse info --}}
+                        <div class="row">
+                            <div class="col-lg mb-3">
+                                <label for="p_name">Spouse name(Live in Partner)</label>
+                                <input type="text" name="p_name" class="form-control" placeholder="Occupation" required>
+                            </div>
+                            <div class="col-lg mb-3">
+                                <label for="p_unit">Age</label>
+                                <input type="number" name="p_unit" class="form-control" placeholder="Age">
+                            </div>
                         </div>
-                        <div class="col-lg mb-3">
-                            <label for="p_unit">Age</label>
-                            <input type="number" name="p_unit" class="form-control" placeholder="Age">
+                        <div class="row">
+                            <div class="col-lg mb-3">
+                                <label for="p_unit">Educational Level</label>
+                                <input type="text" name="p_unit" class="form-control" placeholder="Educational Level" required>
+                            </div>
+                            <div class="col-lg mb-3">
+                                <label for="p_name">Occupation</label>
+                                <input type="text" name="p_name" class="form-control" placeholder="Occupation" required>
+                            </div>
+                            <div class="col-lg mb-3">
+                                <label for="p_unit">Monthly Income</label>
+                                <input type="number" name="p_unit" class="form-control" placeholder="Monthly Income" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg mb-3">
-                            <label for="p_unit">Educational Level</label>
-                            <input type="text" name="p_unit" class="form-control" placeholder="Educational Level" required>
-                        </div>
-                        <div class="col-lg mb-3">
-                            <label for="p_name">Occupation</label>
-                            <input type="text" name="p_name" class="form-control" placeholder="Occupation" required>
-                        </div>
-                        <div class="col-lg mb-3">
-                            <label for="p_unit">Monthly Income</label>
-                            <input type="number" name="p_unit" class="form-control" placeholder="Monthly Income" required>
-                        </div>
-                    </div>
-
-
-
-                    <div class="row">
-                        <div class="col-lg mb-3">
-                            <label for="p_name">No. of household member</label>
-                            <input type="number" name="p_name" class="form-control" placeholder="No." required>
-                        </div>
-                        <div class="col-lg mb-3">
-                            <label for="p_unit">No. of families included in household</label>
-                            <input type="number" name="p_unit" class="form-control" placeholder="No.">
-                        </div>
-                    </div>
 
 
-                    <div id="input-group-container" class="">
-                        <!-- Initial input group -->
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Name">
-                            <input type="number" class="form-control" placeholder="Age">
-                            <select class="form-select" aria-label="Sex">
-                                <option selected>Choose Sex</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                            <input type="text" class="form-control" placeholder="Relationship">
-                            <input type="text" class="form-control" placeholder="Educational">
-                            <input type="text" class="form-control" placeholder="Occupation">
-                            <button class="btn btn-outline-secondary" type="button" onclick="addInput()">Add</button>
-                        </div>
-                    </div>
 
-                    <div class="row g-2">
-                        <div class="col-md mb-3">
-                          <div class="form-floating">
-                            <label for="floatingInputGrid">Email address</label>
-                            <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="mdo@example.com">
-                          </div>
+                        <div class="row">
+                            <div class="col-lg mb-3">
+                                <label for="p_name">No. of household member</label>
+                                <input type="number" name="p_name" class="form-control" placeholder="No." required>
+                            </div>
+                            <div class="col-lg mb-3">
+                                <label for="p_unit">No. of families included in household</label>
+                                <input type="number" name="p_unit" class="form-control" placeholder="No.">
+                            </div>
                         </div>
-                        <div class="col-md mb-3">
-                          <div class="form-floating">
-                            <label for="floatingInputGrid">Occupancy status(Owner/Renter)</label>
-                            <input type="text" class="form-control mb-3" id="floatingInputGrid" placeholder="Select" value="mdo@example.com">
-                            <label for="floatingInputGrid">Period of occupancy</label>
-                            <input type="date" class="form-control mb-3" id="floatingInputGrid" placeholder="" value="mdo@example.com">
-                            <label for="floatingInputGrid">Date of interview</label>
-                            <input type="date" class="form-control mb-3" id="floatingInputGrid" placeholder="" value="mdo@example.com">
-                            <label for="floatingInputGrid">Signature of interviewee</label>
-                            <input type="text" class="form-control mb-3" id="floatingInputGrid" placeholder="Signature" value="mdo@example.com">
-                          </div>
-                        </div>
-                      </div>
 
 
-                    <div class="my-2">
-                        <label for="p_xdate">Expiry Date</label>
-                        <input type="date" name="p_xdate" class="form-control" placeholder="" required>
+                        <div id="input-group-container" class="">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Name">
+                                <input type="number" class="form-control" placeholder="Age">
+                                <select class="form-select" aria-label="Sex">
+                                    <option selected>Choose Sex</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                                <input type="text" class="form-control" placeholder="Relationship">
+                                <input type="text" class="form-control" placeholder="Educational">
+                                <input type="text" class="form-control" placeholder="Occupation">
+                                <button class="btn btn-outline-secondary" type="button" onclick="addInput()">Add</button>
+                            </div>
+                        </div>
+
+                        <div class="row g-2">
+                            <div class="col-md mb-3">
+                                <div class="form-floating">
+                                    <label for="floatingInputGrid">Picture of Family</label>
+                                    <input type="file" class="form-control image-upload" id="imageInput" accept="image/*">
+                                    <img id="previewImage" class="img-fluid mt-2" alt="Uploaded Image" style="display: none; width:300px; height: auto;">
+                                </div>
+                            </div>
+                            <div class="col-md mb-3">
+                                <div class="form-floating">
+                                    <label for="floatingInputGrid">Occupancy status(Owner/Renter)</label>
+                                    <input type="text" class="form-control mb-3" id="floatingInputGrid" placeholder="Select" value="mdo@example.com">
+                                    <label for="floatingInputGrid">Period of occupancy</label>
+                                    <input type="date" class="form-control mb-3" id="floatingInputGrid" placeholder="" value="mdo@example.com">
+                                    <label for="floatingInputGrid">Date of interview</label>
+                                    <input type="date" class="form-control mb-3" id="floatingInputGrid" placeholder="" value="mdo@example.com">
+                                    <label for="floatingInputGrid">Signature of interviewee</label>
+                                    <input type="text" class="form-control mb-3" id="floatingInputGrid" placeholder="Signature">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="p_xdate">Name of interviewer and signature</label>
+                            <input type="text" name="p_xdate" class="form-control" placeholder="Name/Signature" required>
+                        </div>
                     </div>
-                    <div class="my-2">
-                        <label for="p_available">Available</label>
-                        <input type="number" name="p_available" class="form-control" placeholder="Available" required>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" id="add_product_button" class="btn btn-primary">Submit</button>
                     </div>
-                    <div class="my-2">
-                        <label for="p_image">Select Image</label>
-                        <input type="file" name="p_image" class="form-control" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" id="add_product_button" class="btn btn-primary">Add Product</button>
-                </div>
                 </form>
             </div>
         </div>
@@ -343,5 +334,26 @@
 
         return newSelect;
     }
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+    const imageInput = document.getElementById('imageInput');
+    const previewImage = document.getElementById('previewImage');
+
+        imageInput.addEventListener('change', function () {
+            const file = this.files[0];
+
+            if (file) {
+            const reader = new FileReader();
+
+            reader.addEventListener('load', function () {
+                previewImage.src = reader.result;
+                previewImage.style.display = 'block';
+            });
+
+            reader.readAsDataURL(file);
+            }
+        });
+    });
 </script>
 @endsection
