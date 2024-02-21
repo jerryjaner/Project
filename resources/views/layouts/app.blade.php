@@ -116,7 +116,6 @@
         "paging": true, // Enable pagination
         "searching": true, // Enable search bar
         "ordering": true // Disable sorting
-
         });
 </script>
 </body>
