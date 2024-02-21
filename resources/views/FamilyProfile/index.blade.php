@@ -355,20 +355,20 @@
         });
 
         // Add event listener for when the modal is about to be hidden
-$('#create').on('hide.bs.modal', function () {
-    // Remove the modal backdrop
-    $('.modal-backdrop').remove();
-    // Reset modal styles
-    $('#create').css('display', 'none');
-    $('body').removeClass('modal-open');
-});
+        $('#create').on('hide.bs.modal', function () {
+            // Remove the modal backdrop
+            $('.modal-backdrop').remove();
+            // Reset modal styles
+            $('#create').css('display', 'none');
+            $('body').removeClass('modal-open');
+        });
 
-// Add event listener for when the modal is shown
-$('#create').on('shown.bs.modal', function () {
-    // Reset modal styles
-    $('#create').css('display', 'block');
-    $('body').addClass('modal-open');
-});
+        // Add event listener for when the modal is shown
+        $('#create').on('shown.bs.modal', function () {
+            // Reset modal styles
+            $('#create').css('display', 'block');
+            $('body').addClass('modal-open');
+        });
 
 
         $('#create_family_member').on('submit',function (e) {
@@ -405,9 +405,6 @@ $('#create').on('shown.bs.modal', function () {
                         $(form)[0].reset(); // TO REST FORM
                         $('#btnSubmit').removeAttr("disabled"); // removing disabled button
                         $('#btnSubmit').text('Submit');   //change the text to normal
-                        // fetchAllEmployees();    // TO RELOAD THE TABLE
-
-
 
                         // SWEETALERT
                         Swal.fire({
@@ -428,12 +425,6 @@ $('#create').on('shown.bs.modal', function () {
                         $(form)[0].reset();
                         $(form).find('span.error-text').text('');
                     });
-
-
-
-
-
-
 
                 }
             });
