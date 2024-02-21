@@ -27,8 +27,10 @@ return new class extends Migration
             $table->string('spouse_name')->nullable();
             $table->integer('spouse_age')->nullable();
             $table->string('spouse_occupation')->nullable();
-            $table->string('spouse_educational_level')->nullable();
+            $table->string('spouse_education_level')->nullable();
             $table->decimal('spouse_monthly_income',10,2)->nullable();
+            $table->integer('no_households')->nullable();
+            $table->integer('no_family')->nullable();
             $table->string('households_members')->nullable();
             // $table->string('households_members_name')->nullable();
             // $table->string('households_members_age')->nullable();
@@ -37,7 +39,6 @@ return new class extends Migration
             // $table->string('households_members_relationship')->nullable();
             // $table->string('households_members_educ_level')->nullable();
             // $table->string('households_members_occupation')->nullable();
-            $table->integer('no_households')->nullable();
             $table->string('occupancy_status')->nullable();
             $table->string('occupany_period')->nullable();
             $table->date('interview_date')->nullable();

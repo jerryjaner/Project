@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::get('family-profile', [FamilyProfileController::class, 'index'])->name('familyprofile.index');
-    // Route::post('/store', [FamilyProfileController::class, 'store'])->name('store');
+    Route::post('family-profile/store', [FamilyProfileController::class, 'store'])->name('store');
     // Route::get('/fetchall', [FamilyProfileController::class, 'fetchAll'])->name('fetchAll');
 
 
