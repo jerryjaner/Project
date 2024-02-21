@@ -56,4 +56,7 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
+
+    @section('page-scripts')
+    @endsection
 @endsection

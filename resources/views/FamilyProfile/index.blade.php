@@ -43,6 +43,6 @@
     </div>
     <!-- /.content -->
 
-
-    </script>
+    @section('page-scripts')
+    @endsection
 @endsection

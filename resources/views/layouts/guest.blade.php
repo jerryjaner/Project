@@ -3,7 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
+
+
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -15,8 +19,9 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
 
-    {{-- Datatables --}}
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
+
+
+    <!-- Content Header (Page header) -->
 
 
 </head>
@@ -34,9 +39,7 @@
 
 @vite('resources/js/app.js')
 
-{{-- JQuery --}}
-  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
+
 
 <!-- Bootstrap 4 -->
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
@@ -44,8 +47,6 @@
 <script src="{{ asset('js/adminlte.min.js') }}" defer></script>
 
 
-{{-- Datatables Js --}}
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
 
 
 

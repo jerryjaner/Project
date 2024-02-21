@@ -28,10 +28,13 @@ Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
 
     Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/fetchall', [UserController::class, 'fetchAll'])->name('fetchAll');
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 
-    Route::get('family-profile', [FamilyProfileController::class, 'index'])->name('familyprofile.index');
+    // Route::get('family-profile', [FamilyProfileController::class, 'index'])->name('familyprofile.index');
+    // Route::post('/store', [FamilyProfileController::class, 'store'])->name('store');
+    // Route::get('/fetchall', [FamilyProfileController::class, 'fetchAll'])->name('fetchAll');
 
 
 });
