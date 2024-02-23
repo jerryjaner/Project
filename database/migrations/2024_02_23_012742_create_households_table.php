@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('household_members', function (Blueprint $table) {
+        Schema::create('households', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('family_profile_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
+           // $table->foreignId('family_profile_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
+
+            $table->unsignedBigInteger('family_profile_id');
             $table->string('name')->nullable();
             $table->integer('age')->nullable();
             $table->string('sex')->nullable();
@@ -21,6 +23,12 @@ return new class extends Migration
             $table->string('educational_level')->nullable();
             $table->string('occupation')->nullable();
             $table->timestamps();
+
+            $table->foreign('family_profile_id')
+                  ->references('id')
+                  ->on('family_profiles')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
 
         });
     }
@@ -30,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('household_members');
+        Schema::dropIfExists('households');
     }
 };

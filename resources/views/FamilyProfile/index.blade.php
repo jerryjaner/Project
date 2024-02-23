@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -22,98 +21,15 @@
                     <div class="card">
                         <div class="card-header w-100 d-flex justify-content-between align-items-center">
                             <h4 class="text-dark w-100 pt-2">Manage Family</h4>
-
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create">
                                 Add
                             </button>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="example" class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                          <th scope="col">#</th>
-                                          <th scope="col">First</th>
-                                          <th scope="col">Last</th>
-                                          <th scope="col">Handle</th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <tr>
-                                          <th scope="row">1</th>
-                                          <td>Mark</td>
-                                          <td>Otto</td>
-                                          <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="row">1</th>
-                                          <td>Mark</td>
-                                          <td>Otto</td>
-                                          <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="row">1</th>
-                                          <td>Mark</td>
-                                          <td>Otto</td>
-                                          <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="row">1</th>
-                                          <td>Mark</td>
-                                          <td>Otto</td>
-                                          <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="row">1</th>
-                                          <td>Mark</td>
-                                          <td>Otto</td>
-                                          <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="row">1</th>
-                                          <td>Mark</td>
-                                          <td>Otto</td>
-                                          <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="row">1</th>
-                                          <td>Mark</td>
-                                          <td>Otto</td>
-                                          <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="row">1</th>
-                                          <td>Mark</td>
-                                          <td>Otto</td>
-                                          <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="row">1</th>
-                                          <td>Mark</td>
-                                          <td>Otto</td>
-                                          <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="row">1</th>
-                                          <td>Mark</td>
-                                          <td>Otto</td>
-                                          <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="row">2</th>
-                                          <td>Jacob</td>
-                                          <td>Thornton</td>
-                                          <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                          <th scope="row">3</th>
-                                          <td>Larry</td>
-                                          <td>the Bird</td>
-                                          <td>@twitter</td>
-                                        </tr>
-                                      </tbody>
-                                </table>
-                            </div>
+                        <div class="card-body" id="show_all_data">
+
+
+                                <h1 class="text-center text-secondary my-5">Loading...</h1>
+
                         </div>
                     </div>
                 </div>
@@ -122,17 +38,15 @@
     </div>
     <!-- /.content -->
 
-    {{-- Add Household --}}
-
-
+    {{-- Add Household Modal--}}
     <div class="modal fade" id="create" tabindex="-1" aria-labelledby="exampleModalLabel"data-bs-backdrop="static" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centeredmodal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title text-primary" id="exampleModalLabel">Add new Household/Family</h5>
-                    {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" id="close_modal" aria-label="Close"></button> --}}
+
                 </div>
-                <form action="{{ route('store') }}" method="POST" id="create_family_member" enctype="multipart/form-data">
+                <form action="{{ route('familyprofile.store') }}" method="POST" id="create_family_member" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body p-4 bg-light">
                         <div class="row">
@@ -206,7 +120,7 @@
                             </div>
                         </div>
 
-                        {{-- Spouse info --}}
+
                         <div class="row">
                             <div class="col-lg mb-3">
                                 <label for="">Spouse name(Live in Partner)</label>
@@ -336,15 +250,9 @@
 
 
 
-
-
-
-
-
-{{-- AJAX --}}
-
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
 
+{{-- AJAX --}}
 <script>
     $(document).ready(function () {
 
@@ -353,6 +261,9 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+
+        fetch();
 
         // Add event listener for when the modal is about to be hidden
         $('#create').on('hide.bs.modal', function () {
@@ -405,7 +316,7 @@
                         $(form)[0].reset(); // TO REST FORM
                         $('#btnSubmit').removeAttr("disabled"); // removing disabled button
                         $('#btnSubmit').text('Submit');   //change the text to normal
-
+                        fetch();
                         // SWEETALERT
                         Swal.fire({
 
@@ -430,10 +341,22 @@
             });
         });
 
+        function fetch(){
+            $.ajax({
+                url: '{{ route('fetch') }}',
+                method: 'GET',
+                success: function(response) {
+                   $("#show_all_data").html(response);
+                    $('#sample').DataTable({
+                        order: [0, 'desc']
+                    });
+                }
+            });
+        }
+
+
     });
 </script>
-
-
 
 <script>
     var i = 0;
@@ -468,4 +391,8 @@
         $(this).parents('tr').remove();
    });
 </script>
+
+
+
 @endsection
+

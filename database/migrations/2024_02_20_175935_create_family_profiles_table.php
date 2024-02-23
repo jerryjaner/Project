@@ -32,13 +32,6 @@ return new class extends Migration
             $table->integer('no_households')->nullable();
             $table->integer('no_family')->nullable();
             $table->string('households_members')->nullable();
-            // $table->string('households_members_name')->nullable();
-            // $table->string('households_members_age')->nullable();
-            // $table->string('households_members_sex')->nullable();
-            // $table->string('households_members_age')->nullable();
-            // $table->string('households_members_relationship')->nullable();
-            // $table->string('households_members_educ_level')->nullable();
-            // $table->string('households_members_occupation')->nullable();
             $table->string('occupancy_status')->nullable();
             $table->string('occupany_period')->nullable();
             $table->date('interview_date')->nullable();

@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Household;
 use Illuminate\Http\Request;
 use App\Models\FamilyProfile;
-use App\Models\household_member;
 
 class FamilyProfileController extends Controller
 {
-    //
 
     public function index(){
 
@@ -42,8 +41,7 @@ class FamilyProfileController extends Controller
 
         ]);
 
-        if($validator -> fails())
-        {
+        if($validator -> fails()){
             return response()->json([
                 'code' => 0,
                 'error' => $validator->errors()->toArray()
@@ -104,7 +102,7 @@ class FamilyProfileController extends Controller
             // Insert the family profile ID into the family_profile_id field of household members
             foreach ($request->inputs as $key => $value) {
                 $value['family_profile_id'] =  $create_family->id;
-                household_member::create($value);
+                Household::create($value);
             }
 
             return response()->json([
@@ -116,4 +114,65 @@ class FamilyProfileController extends Controller
         }
 
     }
+
+
+    public function fetch() {
+
+        $datas = FamilyProfile::with('households')->get();
+
+        $output = '';
+        if ($datas->count() > 0) {
+            $output .= '<table class="table table-striped align-end" id="sample">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fullname</th>
+                        <th>Address</th>
+                        <th>Birthdate</th>
+                        <th>Age</th>
+                        <th>Household Details</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>';
+            foreach ($datas as $data) {
+                $output .= '<tr>
+                        <td>' . $data->id . '</td>
+                        <td>' . $data->firstname . ' '. $data->middlename .' ' . $data->lastname . '</td>
+                        <td>' . $data->address . '</td>
+                        <td>' . $data->birthdate . '</td>
+                        <td>' . $data->age . '</td>';
+
+
+                $output .= '<td>';
+                foreach ($data->households as $household) {
+                    $output .= 'Name: ' . $household->name . '<br>';
+                    $output .= 'Age: ' . $household->name . '<br>';
+                    $output .= 'Gender: ' . $household->age . '<br>';
+                    $output .= 'Education Level: ' . $household->educational_level . '<br>';
+                    $output .= 'Relationship: ' . $household->relationship . '<br>';
+                    $output .= 'Occupation: ' . $household->occupation . '<br>';
+
+
+                    $output .= '<br>';
+                }
+                $output .= '</td>';
+
+                $output .= '<td>
+                        <a href="#" id="' . $data->id . '" class="text-default  btn btn-success btn-sm mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal">Edit</a>
+                        <a href="#" id="' . $data->id . '" class="text-default  btn btn-primary btn-sm mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal">View</a>
+                        <a href="#" id="' . $data->id . '" class="text-default btn btn-danger btn-sm mx-1 deleteIcon">Delete</a>
+                        </td>
+                    </tr>';
+            }
+
+            $output .= '</tbody></table>';
+            echo $output;
+        }
+        else {
+            echo '<h1 class="text-center text-secondary my-5">No record present in the database!</h1>';
+        }
+
+	}
+
 }

@@ -6,10 +6,10 @@ use App\Models\FamilyProfile;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class household_member extends Model
+class Household extends Model
 {
     use HasFactory;
-
+    protected $table = 'households'; // Assuming the table name is 'household_members'
     protected $fillable = [
         'family_profile_id',
         'name',
@@ -20,9 +20,8 @@ class household_member extends Model
         'occupation',
     ];
 
-    public function Familyprofile(){
-
-        return $this->belongsTo(FamilyProfile::class,  'family_profile_id', 'id')->withDefault();
+    public function familyProfile()
+    {
+        return $this->belongsTo(FamilyProfile::class,)->withDefault();
     }
-
 }

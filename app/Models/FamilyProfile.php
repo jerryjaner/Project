@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Household;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class FamilyProfile extends Model
 {
     use HasFactory;
+    protected $table = 'family_profiles'; // Assuming the table name is 'family_profiles'
+
     protected $fillable = [
 
         'firstname',
@@ -35,9 +38,14 @@ class FamilyProfile extends Model
 
     ];
 
-     //Relationship
-     public function HouseHoldMember(){
+    public function households()
+    {
+        return $this->hasMany(Household::class,);
 
-        return $this->hasmany(household_member::class, 'family_profile_id', 'id')->withDefault();
+
     }
+
+
+
+
 }
