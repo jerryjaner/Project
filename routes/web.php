@@ -34,7 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::put('profile', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::get('/familyprofile', [FamilyProfileController::class, 'index'])->name('familyprofile.index');
-    Route::post('/store', [FamilyProfileController::class, 'store'])->name('familyprofile.store');
-    Route::get('/fetch',[FamilyProfileController::class, 'fetch'])->name("fetch");
+    Route::post('/familyprofile/store', [FamilyProfileController::class, 'store'])->name('familyprofile.store');
+    Route::get('/familyprofile/fetch',[FamilyProfileController::class, 'fetch'])->name("familyprofile.fetch");
+    Route::get('/familyprofile/view', [FamilyProfileController::class, 'view'])->name('familyprofile.view');
+    Route::delete('/familyprofile/delete', [FamilyProfileController::class, 'delete'])->name('familyprofile.delete');
 
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Household;
 use Illuminate\Http\Request;
 use App\Models\FamilyProfile;
+use Illuminate\Support\Facades\Storage;
 
 class FamilyProfileController extends Controller
 {
@@ -130,7 +131,6 @@ class FamilyProfileController extends Controller
                         <th>Address</th>
                         <th>Birthdate</th>
                         <th>Age</th>
-                        <th>Household Details</th>
                         <th>Action</th>
                     </tr>
                     </thead>
@@ -144,24 +144,22 @@ class FamilyProfileController extends Controller
                         <td>' . $data->age . '</td>';
 
 
-                $output .= '<td>';
-                foreach ($data->households as $household) {
-                    $output .= 'Name: ' . $household->name . '<br>';
-                    $output .= 'Age: ' . $household->name . '<br>';
-                    $output .= 'Gender: ' . $household->age . '<br>';
-                    $output .= 'Education Level: ' . $household->educational_level . '<br>';
-                    $output .= 'Relationship: ' . $household->relationship . '<br>';
-                    $output .= 'Occupation: ' . $household->occupation . '<br>';
-
-
-                    $output .= '<br>';
-                }
-                $output .= '</td>';
+                // $output .= '<td>';
+                // foreach ($data->households as $household) {
+                //     $output .= 'Name: ' . $household->name . '<br>';
+                //     $output .= 'Age: ' . $household->name . '<br>';
+                //     $output .= 'Gender: ' . $household->age . '<br>';
+                //     $output .= 'Education Level: ' . $household->educational_level . '<br>';
+                //     $output .= 'Relationship: ' . $household->relationship . '<br>';
+                //     $output .= 'Occupation: ' . $household->occupation . '<br>';
+                //     $output .= '<br>';
+                // }
+                // $output .= '</td>';
 
                 $output .= '<td>
                         <a href="#" id="' . $data->id . '" class="text-default  btn btn-success btn-sm mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal">Edit</a>
-                        <a href="#" id="' . $data->id . '" class="text-default  btn btn-primary btn-sm mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal">View</a>
-                        <a href="#" id="' . $data->id . '" class="text-default btn btn-danger btn-sm mx-1 deleteIcon">Delete</a>
+                        <a href="#" id="' . $data->id . '" class="text-default  btn btn-primary btn-sm mx-1 view" data-bs-toggle="modal" data-bs-target="#view">View</a>
+                        <a href="#" id="' . $data->id . '" class="text-default btn btn-danger btn-sm mx-1 delete">Delete</a>
                         </td>
                     </tr>';
             }
@@ -174,5 +172,30 @@ class FamilyProfileController extends Controller
         }
 
 	}
+
+
+    public function view(Request $request) {
+
+		$households = FamilyProfile::with('households')->find($request->id);
+
+		return response()->json($households);
+	}
+
+
+    public function delete(Request $request) {
+
+		$data = FamilyProfile::find($request->id);
+
+        if (Storage::delete('public/family/profile/images/' . $data->image)) {
+
+			FamilyProfile::destroy($request->id);
+		}
+        else{
+            FamilyProfile::destroy($request->id);
+        }
+
+
+	}
+
 
 }

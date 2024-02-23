@@ -19,7 +19,12 @@
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
     @yield('styles')
 
-
+    <style>
+        .required::after {
+        content: ' *';
+        color: red;
+        }
+    </style>
 
 
   </head>
