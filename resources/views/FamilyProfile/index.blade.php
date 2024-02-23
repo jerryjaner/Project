@@ -402,6 +402,7 @@
                             <div class="col-md mb-3 p-0 m-0">
                                 <div class="form-floating">
                                     <div class="col-lg p-0 m-0">
+                                        <label for="floatingInputGrid">Picture of Family</label>
                                         <div class="mt-2" id="preview_family_profile_image">
                                             {{-- Render the image --}}
                                         </div>
@@ -416,7 +417,7 @@
                                         <span class="mb-2 text-danger error-text occupancy_status_error"></span>
                                     </div>
                                     <div class="col-lg mb-3 p-0 m-0">
-                                        <label for="floatingInputGrid">Period of occupancy</label>
+                                        <label for="floatingInputGrid">Period of Occupancy</label>
                                         <input type="date" class="form-control mb-3" id="occupancy_period" placeholder="" name='occupancy_period'>
                                         <span class="mb-2 text-danger error-text occupancy_period_error"></span><br>
                                     </div>
