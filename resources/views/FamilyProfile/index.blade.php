@@ -25,11 +25,10 @@
                                 Add
                             </button>
                         </div>
-                        <div class="card-body" id="show_all_data">
-
-
-                                <h1 class="text-center text-secondary my-5">Loading...</h1>
-
+                        <div class="card-body">
+                            <div class="table-responsive m-0 p-2" id="show_all_data">
+                                <h3 class="text-center text-secondary my-5">Loading...</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -44,7 +43,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title text-primary" id="exampleModalLabel">Add new Household/Family</h5>
-
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="clearInputs()"></button>
                 </div>
                 <form action="{{ route('familyprofile.store') }}" method="POST" id="create_family_member" enctype="multipart/form-data">
                     @csrf
@@ -58,13 +57,13 @@
 
                         <div class="row">
                             <div class="col-lg mb-3">
-                                <label for="">Lastname</label>
+                                <label for="lastname" class="form-label required">Lastname</label>
                                 <input type="text" name="lastname"  class="form-control" placeholder="Lastname" >
                                 <span class="text-danger error-text lastname_error"></span>
                             </div>
                             <div class="col-lg mb-3">
-                                <label for="">Firstname</label>
-                                <input type="text" name="firstname"  class="form-control" placeholder="firstname" >
+                                <label for="firstname" class="form-label required">Firstname</label>
+                                <input type="text" name="firstname"  class="form-control" placeholder="Firstname" >
                                 <span class="text-danger error-text firstname_error"></span>
                             </div>
                             <div class="col-lg mb-3">
@@ -76,17 +75,17 @@
 
                         <div class="row">
                             <div class="col-lg mb-3">
-                                <label for="">Address</label>
+                                <label for="address" class="form-label required">Address</label>
                                 <input type="text" name="address" class="form-control" placeholder="Address">
                                 <span class="text-danger error-text address_error"></span>
                             </div>
                             <div class="col-lg mb-3">
-                                <label for="">Birthdate</label>
+                                <label for="birthdate" class="form-label required">Birthdate</label>
                                 <input type="date" name="birthdate" class="form-control" placeholder="Birthdate">
                                 <span class="text-danger error-text birthdate_error"></span>
                             </div>
                             <div class="col-lg mb-3">
-                                <label for="">Age</label>
+                                <label for="" class="form-label required">Age</label>
                                 <input type="number" name="age" class="form-control" placeholder="Age">
                                 <span class="text-danger error-text age_error"></span>
                             </div>
@@ -94,13 +93,13 @@
                         <div class="row">
                             <div class="col-lg mb-3">
 
-                                <label for="">Civil Status</label>
+                                <label for="" class="form-label required">Civil Status</label>
                                 <input type="text" name="civil_status" class="form-control" placeholder="Civil Status" >
                                 <span class="text-danger error-text civil_status_error"></span>
 
                             </div>
                             <div class="col-lg mb-3">
-                                <label for="">Monthly Income</label>
+                                <label for="" class="form-label required">Monthly Income</label>
                                 <input type="number" name="monthly_income" class="form-control" placeholder="Monthly Income" >
                                 <span class="text-danger error-text monthly_income_error"></span>
                             </div>
@@ -108,13 +107,13 @@
                         <div class="row">
                             <div class="col-lg mb-3">
 
-                                <label for="">Occupation</label>
+                                <label for="" class="form-label required">Occupation</label>
                                 <input type="text" name="occupation" class="form-control" placeholder="Occupation" >
                                 <span class="text-danger error-text occupation_error"></span>
 
                             </div>
                             <div class="col-lg mb-3">
-                                <label for="">Educational Level</label>
+                                <label for="" class="form-label required">Educational Level</label>
                                 <input type="text" name="educational_level" class="form-control" placeholder="Educational Level" >
                                 <span class="text-danger error-text educational_level_error"></span>
                             </div>
@@ -123,29 +122,29 @@
 
                         <div class="row">
                             <div class="col-lg mb-3">
-                                <label for="">Spouse Name(Live in Partner)</label>
+                                <label for="" class="form-label required">Spouse Name(Live in Partner)</label>
                                 <input type="text" name="spouse_name" class="form-control" placeholder="Occupation">
                                 <span class="text-danger error-text spouse_name_error"></span>
                             </div>
                             <div class="col-lg mb-3">
-                                <label for="">Age</label>
+                                <label for="" class="form-label required">Age</label>
                                 <input type="number" name="spouse_age" class="form-control" placeholder="Age">
                                 <span class="text-danger error-text spouse_age_error"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg mb-3">
-                                <label for="">Educational Level</label>
+                                <label for="" class="form-label required">Educational Level</label>
                                 <input type="text" name="spouse_education_level" class="form-control" placeholder="Educational Level" >
                                 <span class="text-danger error-text spouse_education_level_error"></span>
                             </div>
                             <div class="col-lg mb-3">
-                                <label for="">Occupation</label>
+                                <label for="" class="form-label required">Occupation</label>
                                 <input type="text" name="spouse_occupation" class="form-control" placeholder="Occupation" >
                                 <span class="text-danger error-text spouse_occupation_error"></span>
                             </div>
                             <div class="col-lg mb-3">
-                                <label for="">Monthly Income</label>
+                                <label for="" class="form-label required">Monthly Income</label>
                                 <input type="number" name="spouse_monthly_income" class="form-control" placeholder="Monthly Income" >
                                 <span class="text-danger error-text spouse_monthly_income_error"></span>
                             </div>
@@ -154,12 +153,12 @@
 
                         <div class="row mb-2">
                             <div class="col-lg mb-3">
-                                <label for="">No. of Household Member</label>
+                                <label for="" class="form-label required">No. of Household Member</label>
                                 <input type="number" name="no_households" class="form-control" placeholder="No." >
                                 <span class="text-danger error-text no_households_error"></span>
                             </div>
                             <div class="col-lg mb-3">
-                                <label for="">No. of Families Included in Household</label>
+                                <label for="" class="form-label required">No. of Families Included in Household</label>
                                 <input type="number" name="no_family" class="form-control" placeholder="No.">
                                 <span class="text-danger error-text no_family_error"></span>
                             </div>
@@ -167,8 +166,8 @@
 
 
                         <div id="input-group-container" class="mb-3">
-                            <div class="input-group mb-3">
-                                <table class="table table-bordered" id="repeater">
+                            <div class="input-group mb-3 table-responsive">
+                                <table class="table" id="repeater">
                                     <tr>
                                         <th>Name</th>
                                         <th>Age</th>
@@ -190,7 +189,7 @@
                                         <td> <input type="text" class="form-control" placeholder="Relationship" name="inputs[0][relationship]"></td>
                                         <td> <input type="text" class="form-control" placeholder="Education level" name="inputs[0][educational_level]"></td>
                                         <td> <input type="text" class="form-control" placeholder="Occupation" name="inputs[0][occupation]"></td>
-                                        <td><button type="button" name="add" id="add" class="btn btn-success" >Add More</button></td>
+                                        <td><button type="button" name="add" id="add" class="btn btn-primary w-100" >Add</button></td>
                                     </tr>
 
                                 </table>
@@ -201,7 +200,7 @@
                             <div class="col-md mb-3 p-0 m-0">
                                 <div class="form-floating">
                                     <div class="col-lg p-0 m-0">
-                                        <label for="floatingInputGrid">Picture of Family</label>
+                                        <label for="floatingInputGrid" class="form-label required">Picture of Family</label>
                                         <input type="file" class="form-control image-upload" id="imageInput" accept="image/*" name="image">
                                         <img id="previewImage" class="img-fluid mt-2" alt="Uploaded Image" style="display: none; width:300px; height: auto;">
                                         <span class="text-danger error-text image_error"></span>
@@ -211,22 +210,28 @@
                             <div class="col-md mb-3 p-0 m-0">
                                 <div class="form-floating">
                                     <div class="col-lg mb-3 p-0 m-0">
-                                        <label for="floatingInputGrid">Occupancy Status(Owner/Renter)</label>
-                                        <input type="text" class="form-control mb-3" id="floatingInputGrid" placeholder="" name="occupancy_status">
+                                        <label for="floatingInputGrid" class="form-label required">Occupancy Status(Owner/Renter)</label>
+                                        <input type="text" class="form-control " id="floatingInputGrid" placeholder="Status" name="occupancy_status">
                                         <span class="mb-2 text-danger error-text occupancy_status_error"></span>
                                     </div>
-                                    <div class="col-lg mb-3 p-0 m-0">
-                                        <label for="floatingInputGrid">Period of Occupancy</label>
+                                    {{-- <div class="col-lg mb-3 p-0 m-0 bg-danger">
+                                        <label for="floatingInputGrid" class="form-label required">Period of Occupancy</label>
                                         <input type="date" class="form-control mb-3" id="floatingInputGrid" placeholder="" name='occupancy_period'>
                                         <span class="mb-2 text-danger error-text occupancy_period_error"></span><br>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-lg mb-3 p-0 m-0">
-                                        <label for="floatingInputGrid">Date of Interview</label>
+                                        <label for="floatingInputGrid" class="form-label required">Period of Occupancy</label>
+                                        <input type="date" class="form-control mb-3" id="floatingInputGrid" placeholder="" name="occupancy_period">
+                                        <span class="mb-2 text-danger error-text occupancy_period_error"></span>
+                                    </div>
+
+                                    <div class="col-lg mb-3 p-0 m-0">
+                                        <label for="floatingInputGrid" class="form-label required">Date of Interview</label>
                                         <input type="date" class="form-control mb-3" id="floatingInputGrid" placeholder="" name="interview_date">
                                         <span class="mb-2 text-danger error-text interview_date_error"></span>
                                     </div>
-                                    <div class="col-lg mb-3 p-0 m-0" hidden>
-                                        <label for="floatingInputGrid">Signature of Interviewee</label>
+                                    <div class="col-lg mb-3 p-0 m-0" >
+                                        <label for="floatingInputGrid" class="form-label required">Signature of Interviewee</label>
                                         <input type="text" class="form-control mb-3" id="floatingInputGrid" placeholder="Signature">
                                     </div>
 
@@ -235,12 +240,12 @@
                         </div>
 
                         <div class="mb-3" hidden>
-                            <label for="p_xdate">Name of Interviewer and Signature</label>
+                            <label for="p_xdate" class="form-label required">Name of Interviewer and Signature</label>
                             <input type="text" name="p_xdate" class="form-control" placeholder="Name/Signature">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal" id="close_modal">Close</button>
+                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal" onclick="clearInputs()">Close</button>
                         <button type="submit"  id="btnSubmit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
@@ -255,6 +260,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title text-primary" id="view">ViewHousehold/Family</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="" method="" id="view_data" enctype="multipart/form-data">
                     @csrf
@@ -263,7 +269,7 @@
                     <div class="modal-body p-4 bg-light">
                         <div class="row">
                             <div class="col-lg-4 mb-3">
-                                <label for="p_name" class="form-label required">Profile No.</label>
+                                <label for="p_name" class="form-label">Profile No.</label>
                                 <input type="text" name="p_name" id="profile_no" class="form-control" placeholder="No.">
                             </div>
                         </div>
@@ -379,7 +385,7 @@
 
 
                         <div id="input-group-container" class="mb-3">
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-3 table-responsive">
                                 <table class="table table-bordered" id="repeater">
                                     <tr>
                                         <th>Name</th>
@@ -705,7 +711,8 @@
                 });
 
                 reader.readAsDataURL(file);
-            } else {
+            }
+            else {
                 // If no file is selected, display a text message
                 previewImage.src = ''; // Clear any existing image
                 previewImage.alt = 'No Image Choosen';
@@ -715,10 +722,20 @@
         });
     });
 
+
+    function clearInputs() {
+        var inputs = document.getElementsByClassName('form-control');
+        const errorSpan = document.querySelector('.text-danger.error-text');
+
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].value = '';
+        }
+
+        previewImage.src = '';
+        previewImage.alt = 'No Image Choosen';
+        previewImage.style.display = 'block';
+    }
 </script>
-
-
-
 
 
 @endsection

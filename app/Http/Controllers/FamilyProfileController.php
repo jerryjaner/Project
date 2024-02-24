@@ -123,7 +123,7 @@ class FamilyProfileController extends Controller
 
         $output = '';
         if ($datas->count() > 0) {
-            $output .= '<table class="table table-striped align-end" id="sample">
+            $output .= '<table class="table table-striped" id="sample">
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -156,10 +156,17 @@ class FamilyProfileController extends Controller
                 // }
                 // $output .= '</td>';
 
-                $output .= '<td>
-                        <a href="#" id="' . $data->id . '" class="text-default  btn btn-success btn-sm mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal">Edit</a>
-                        <a href="#" id="' . $data->id . '" class="text-default  btn btn-primary btn-sm mx-1 view" data-bs-toggle="modal" data-bs-target="#view">View</a>
-                        <a href="#" id="' . $data->id . '" class="text-default btn btn-danger btn-sm mx-1 delete">Delete</a>
+                $output .= '<td><div class="d-flex gap-2">
+                                <div class="flex-grow-1">
+                                    <a href="#" id="' . $data->id . '" class="text-default btn w-100 btn-outline-success btn-sm mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal">Edit</a>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <a href="#" id="' . $data->id . '" class="text-default btn w-100 btn-outline-primary btn-sm mx-1 view" data-bs-toggle="modal" data-bs-target="#view">View</a>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <a href="#" id="' . $data->id . '" class="text-default btn w-100 btn-outline-danger btn-sm mx-1 delete">Delete</a>
+                                </div>
+                        </div>
                         </td>
                     </tr>';
             }
@@ -168,7 +175,8 @@ class FamilyProfileController extends Controller
             echo $output;
         }
         else {
-            echo '<h1 class="text-center text-secondary my-5">No record present in the database!</h1>';
+            echo '<center><img src="https://img.icons8.com/ios/50/737373/nothing-found.png" style="font-size: 1rem;" class="pt-5"></center>';
+			echo '<center><div class="d-flex justify-content-center pb-5"><h3 class="text-muted mt-3">No record present in the database!</h3></div></center>';
         }
 
 	}
