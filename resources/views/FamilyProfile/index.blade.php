@@ -123,7 +123,7 @@
 
                         <div class="row">
                             <div class="col-lg mb-3">
-                                <label for="">Spouse name(Live in Partner)</label>
+                                <label for="">Spouse Name(Live in Partner)</label>
                                 <input type="text" name="spouse_name" class="form-control" placeholder="Occupation">
                                 <span class="text-danger error-text spouse_name_error"></span>
                             </div>
@@ -154,12 +154,12 @@
 
                         <div class="row mb-2">
                             <div class="col-lg mb-3">
-                                <label for="">No. of household member</label>
+                                <label for="">No. of Household Member</label>
                                 <input type="number" name="no_households" class="form-control" placeholder="No." >
                                 <span class="text-danger error-text no_households_error"></span>
                             </div>
                             <div class="col-lg mb-3">
-                                <label for="">No. of families included in household</label>
+                                <label for="">No. of Families Included in Household</label>
                                 <input type="number" name="no_family" class="form-control" placeholder="No.">
                                 <span class="text-danger error-text no_family_error"></span>
                             </div>
@@ -211,22 +211,22 @@
                             <div class="col-md mb-3 p-0 m-0">
                                 <div class="form-floating">
                                     <div class="col-lg mb-3 p-0 m-0">
-                                        <label for="floatingInputGrid">Occupancy status(Owner/Renter)</label>
+                                        <label for="floatingInputGrid">Occupancy Status(Owner/Renter)</label>
                                         <input type="text" class="form-control mb-3" id="floatingInputGrid" placeholder="" name="occupancy_status">
                                         <span class="mb-2 text-danger error-text occupancy_status_error"></span>
                                     </div>
                                     <div class="col-lg mb-3 p-0 m-0">
-                                        <label for="floatingInputGrid">Period of occupancy</label>
+                                        <label for="floatingInputGrid">Period of Occupancy</label>
                                         <input type="date" class="form-control mb-3" id="floatingInputGrid" placeholder="" name='occupancy_period'>
                                         <span class="mb-2 text-danger error-text occupancy_period_error"></span><br>
                                     </div>
                                     <div class="col-lg mb-3 p-0 m-0">
-                                        <label for="floatingInputGrid">Date of interview</label>
+                                        <label for="floatingInputGrid">Date of Interview</label>
                                         <input type="date" class="form-control mb-3" id="floatingInputGrid" placeholder="" name="interview_date">
                                         <span class="mb-2 text-danger error-text interview_date_error"></span>
                                     </div>
                                     <div class="col-lg mb-3 p-0 m-0" hidden>
-                                        <label for="floatingInputGrid">Signature of interviewee</label>
+                                        <label for="floatingInputGrid">Signature of Interviewee</label>
                                         <input type="text" class="form-control mb-3" id="floatingInputGrid" placeholder="Signature">
                                     </div>
 
@@ -235,7 +235,7 @@
                         </div>
 
                         <div class="mb-3" hidden>
-                            <label for="p_xdate">Name of interviewer and signature</label>
+                            <label for="p_xdate">Name of Interviewer and Signature</label>
                             <input type="text" name="p_xdate" class="form-control" placeholder="Name/Signature">
                         </div>
                     </div>
@@ -335,7 +335,7 @@
 
                         <div class="row">
                             <div class="col-lg mb-3">
-                                <label for="">Spouse name(Live in Partner)</label>
+                                <label for="">Spouse Name(Live in Partner)</label>
                                 <input type="text" name="spouse_name" id="spouse_name" class="form-control" placeholder="Occupation">
                                 <span class="text-danger error-text spouse_name_error"></span>
                             </div>
@@ -366,12 +366,12 @@
 
                         <div class="row mb-2">
                             <div class="col-lg mb-3">
-                                <label for="">No. of household member</label>
+                                <label for="">No. of Household Member</label>
                                 <input type="number" name="no_households" id="no_households" class="form-control" placeholder="No." >
                                 <span class="text-danger error-text no_households_error"></span>
                             </div>
                             <div class="col-lg mb-3">
-                                <label for="">No. of families included in household</label>
+                                <label for="">No. of Families Included in Household</label>
                                 <input type="number" name="no_family" id="no_family" class="form-control" placeholder="No.">
                                 <span class="text-danger error-text no_family_error"></span>
                             </div>
@@ -412,7 +412,7 @@
                             <div class="col-md mb-3 p-0 m-0">
                                 <div class="form-floating">
                                     <div class="col-lg mb-3 p-0 m-0">
-                                        <label for="floatingInputGrid">Occupancy status(Owner/Renter)</label>
+                                        <label for="floatingInputGrid">Occupancy Status(Owner/Renter)</label>
                                         <input type="text" class="form-control mb-3" id="occupancy_status" placeholder="" name="occupancy_status">
                                         <span class="mb-2 text-danger error-text occupancy_status_error"></span>
                                     </div>
@@ -422,12 +422,12 @@
                                         <span class="mb-2 text-danger error-text occupancy_period_error"></span><br>
                                     </div>
                                     <div class="col-lg mb-3 p-0 m-0">
-                                        <label for="floatingInputGrid">Date of interview</label>
+                                        <label for="floatingInputGrid">Date of Interview</label>
                                         <input type="date" class="form-control mb-3" id="interview_date" placeholder="" name="interview_date">
                                         <span class="mb-2 text-danger error-text interview_date_error"></span>
                                     </div>
                                     <div class="col-lg mb-3 p-0 m-0" hidden>
-                                        <label for="floatingInputGrid">Signature of interviewee</label>
+                                        <label for="floatingInputGrid">Signature of Interviewee</label>
                                         <input type="text" class="form-control mb-3" id="signature_interviewee" placeholder="Signature">
                                     </div>
 
@@ -436,7 +436,7 @@
                         </div>
 
                         <div class="mb-3"hidden>
-                            <label for="p_xdate">Name of interviewer and signature</label>
+                            <label for="p_xdate">Name of Interviewer and Signature</label>
                             <input type="text" name="p_xdate" class="form-control" placeholder="Name/Signature">
                         </div>
                     </div>

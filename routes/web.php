@@ -27,7 +27,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::middleware('auth')->group(function () {
-    Route::view('about', 'about')->name('about');
+
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::get('fetchall', [UserController::class, 'fetchAll'])->name('fetchAll');
     Route::get('profile', [ProfileController::class, 'show'])->name('profile.show');
