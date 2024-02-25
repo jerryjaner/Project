@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class FamilyProfile extends Model
 {
     use HasFactory;
-    protected $table = 'family_profiles'; // Assuming the table name is 'family_profiles'
-
+    protected $table = 'family_profiles';
     protected $fillable = [
 
         'firstname',
@@ -38,11 +37,8 @@ class FamilyProfile extends Model
 
     ];
 
-    public function households()
-    {
+    public function households(){
         return $this->hasMany(Household::class,);
-
-
     }
 
 

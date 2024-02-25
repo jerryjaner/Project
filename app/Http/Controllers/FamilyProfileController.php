@@ -69,7 +69,7 @@ class FamilyProfileController extends Controller
             $create_family -> no_households = $request -> no_households;
             $create_family -> no_family = $request -> no_family;
             $create_family -> occupancy_status = $request -> occupancy_status;
-            $create_family -> occupany_period = $request -> occupany_period;
+            $create_family -> occupancy_period = $request -> occupancy_period;
             $create_family -> interview_date = $request -> interview_date;
 
             if($request -> hasfile('image'))
@@ -120,13 +120,13 @@ class FamilyProfileController extends Controller
     public function fetch() {
 
         $datas = FamilyProfile::with('households')->get();
-
+        $i = 1;
         $output = '';
         if ($datas->count() > 0) {
             $output .= '<table class="table table-striped align-end" id="sample">
                     <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>No</th>
                         <th>Fullname</th>
                         <th>Address</th>
                         <th>Birthdate</th>
@@ -137,7 +137,7 @@ class FamilyProfileController extends Controller
                     <tbody>';
             foreach ($datas as $data) {
                 $output .= '<tr>
-                        <td>' . $data->id . '</td>
+                        <td>' . $i++ . '</td>
                         <td>' . $data->firstname . ' '. $data->middlename .' ' . $data->lastname . '</td>
                         <td>' . $data->address . '</td>
                         <td>' . $data->birthdate . '</td>
@@ -157,7 +157,7 @@ class FamilyProfileController extends Controller
                 // $output .= '</td>';
 
                 $output .= '<td>
-                        <a href="#" id="' . $data->id . '" class="text-default  btn btn-success btn-sm mx-1 editIcon" data-bs-toggle="modal" data-bs-target="#editEmployeeModal">Edit</a>
+                        <a href="#" id="' . $data->id . '" class="text-default  btn btn-success btn-sm mx-1 edit" data-bs-toggle="modal" data-bs-target="#edit">Edit</a>
                         <a href="#" id="' . $data->id . '" class="text-default  btn btn-primary btn-sm mx-1 view" data-bs-toggle="modal" data-bs-target="#view">View</a>
                         <a href="#" id="' . $data->id . '" class="text-default btn btn-danger btn-sm mx-1 delete">Delete</a>
                         </td>
@@ -193,6 +193,156 @@ class FamilyProfileController extends Controller
         else{
             FamilyProfile::destroy($request->id);
         }
+
+
+	}
+
+    public function edit(Request $request) {
+
+		$data = FamilyProfile::with('households')->find($request->id);
+
+		return response()->json($data);
+	}
+
+    public function update(Request $request) {
+
+		$update_family = FamilyProfile::find($request->edit_id);
+
+        $validator = \Validator::make($request -> all(),[
+
+            'firstname' => 'required',
+            'lastname'  => 'required',
+            'middlename' => 'required',
+            // 'image'  => 'required',
+            'address'  => 'required',
+            'birthdate' => 'required',
+            'age'  => 'required',
+            'civil_status'  => 'required',
+            'monthly_income'  => 'required',
+            'occupation'  => 'required',
+            'educational_level'  => 'required',
+            'spouse_name' => 'required',
+            'spouse_age'  => 'required',
+            'spouse_occupation'  => 'required',
+            'spouse_education_level' => 'required',
+            'spouse_monthly_income' => 'required',
+            'no_households' => 'required',
+            'no_family'  => 'required',
+            'occupancy_status' =>'required',
+            'occupancy_period' =>'required',
+            'interview_date' =>'required',
+
+        ]);
+
+        if($validator -> fails()){
+            return response()->json([
+                'code' => 0,
+                'error' => $validator->errors()->toArray()
+            ]);
+        }
+        else{
+
+
+            $update_family -> firstname = $request -> firstname;
+            $update_family -> address = $request -> address;
+            $update_family -> birthdate = $request -> birthdate;
+            $update_family -> age = $request -> age;
+            $update_family -> civil_status = $request -> civil_status;
+            $update_family -> monthly_income = $request -> monthly_income;
+            $update_family -> occupation = $request -> occupation;
+            $update_family -> educational_level = $request -> educational_level;
+            $update_family -> spouse_name = $request -> spouse_name;
+            $update_family -> spouse_age = $request -> spouse_age;
+            $update_family -> spouse_occupation = $request -> spouse_occupation;
+            $update_family -> spouse_education_level = $request -> spouse_education_level;
+            $update_family -> lastname = $request -> lastname;
+            $update_family -> spouse_monthly_income = $request -> spouse_monthly_income;
+            $update_family -> middlename = $request -> middlename;
+            $update_family -> no_households = $request -> no_households;
+            $update_family -> no_family = $request -> no_family;
+            $update_family -> occupancy_status = $request -> occupancy_status;
+            $update_family -> occupancy_period = $request -> occupancy_period;
+            $update_family -> interview_date = $request -> interview_date;
+
+            $fileName = '';
+            if($request ->hasfile('image'))
+            {
+                $file = $request->file('image');
+                $extension = $file -> getClientOriginalExtension();
+                $fileName = time() . '.' .$extension;
+                $file->storeAs('public/family/profile/images', $fileName);
+                if ($update_family->image){
+
+                    Storage::delete('public/family/profile/images/' . $update_family->image);
+                }
+                $update_family -> image = $fileName;
+            }
+            $update_family -> update();
+
+            // Household::where('family_profile_id', '=', $request -> user_id )
+            // ->update([
+            //             'name' => $request -> name,
+            //             'age' => $request -> age,
+
+            //         ]);
+
+                // $request->validate([
+
+                //     'inputs.*.name' => 'required',
+                //     'inputs.*.age' => 'required',
+                //     'inputs.*.sex' => 'required',
+                //     'inputs.*.relationship' => 'required',
+                //     'inputs.*.sex' => 'required',
+                //     'inputs.*.occupation' => 'required',
+                //     'inputs.*.educational_level' => 'required'
+
+                // ]);
+
+                // $update_household = Household::where('family_profile_id', '=', $request -> edit_id )-> update([
+
+
+
+                // ]);
+
+                $request->validate([
+                    'inputs.*.name' => 'required',
+                    'inputs.*.age' => 'required',
+                    'inputs.*.sex' => 'required',
+                    'inputs.*.relationship' => 'required',
+                    'inputs.*.occupation' => 'required',
+                    'inputs.*.educational_level' => 'required'
+                ]);
+
+                $updateData = $request->inputs; // Assuming inputs are properly formatted
+                $editId = $request->edit_id;
+
+                foreach ($updateData as $data) {
+                    $householdId = $data[$editId];
+                    $household = Household::find($householdId);
+
+                    if ($household && $household->family_profile_id == $editId) {
+                        $household->update([
+                            'name' => $data['name'],
+                            'age' => $data['age'],
+                            'sex' => $data['sex'],
+                            'relationship' => $data['relationship'],
+                            'occupation' => $data['occupation'],
+                            'educational_level' => $data['educational_level']
+                        ]);
+                    }
+                }
+
+
+                dd($household);
+
+
+
+            return response()->json([
+                'status' => 200,
+            ]);
+
+        }
+
 
 
 	}

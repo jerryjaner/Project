@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD App Laravel 8 & Ajax</title>
+    <title>Project</title>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css' />
     <link rel='stylesheet'
       href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
@@ -108,18 +108,8 @@
 
 <!-- ./wrapper -->
 
-<!-- REQUIRED SCRIPTS -->
 
-{{-- <script>
-    $('table').DataTable({
-        "paging": true, // Enable pagination
-        "searching": true, // Enable search bar
-        "ordering": true // Disable sorting
-        });
-</script>
- --}}
-<!-- AdminLTE App -->
-
+<!-- AdminLTE App -->x
 {{-- @vite('resources/js/app.js') --}}
 
 @yield('scripts')
