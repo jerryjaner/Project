@@ -11,7 +11,6 @@
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content-header -->
 
     <!-- Family Table -->
     <div class="content">
@@ -35,7 +34,6 @@
             </div>
         </div>
     </div>
-    <!-- /.content -->
 
     {{-- Add Household Modal--}}
     <div class="modal fade" id="create" tabindex="-1" aria-labelledby="exampleModalLabel"data-bs-backdrop="static" aria-hidden="true">
@@ -252,7 +250,6 @@
             </div>
         </div>
     </div>
-
 
     {{-- VIew --}}
     <div class="modal fade" id="view" tabindex="-1" aria-labelledby="view"data-bs-backdrop="static" aria-hidden="true">
