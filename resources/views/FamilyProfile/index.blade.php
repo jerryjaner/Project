@@ -26,10 +26,7 @@
                             </button>
                         </div>
                         <div class="card-body" id="show_all_data">
-
-
-                                <h1 class="text-center text-secondary my-5">Loading...</h1>
-
+                            <h1 class="text-center text-secondary my-5">Loading...</h1>
                         </div>
                     </div>
                 </div>
@@ -240,7 +237,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal" id="close_modal">Close</button>
+                        <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal" id="close_modal">Cancel</button>
                         <button type="submit"  id="btnSubmit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
@@ -391,7 +388,7 @@
 
                                     </tr>
                                     <tbody id="householdDetails">
-                                        <!-- Table rows will be populated dynamically via AJAX -->
+                                    <!-- Table rows will be populated dynamically via AJAX -->
                                     </tbody>
 
                                 </table>
@@ -434,7 +431,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="mb-3"hidden>
                             <label for="p_xdate">Name of Interviewer and Signature</label>
                             <input type="text" name="p_xdate" class="form-control" placeholder="Name/Signature">
@@ -590,7 +586,7 @@
 
                                     </tr>
                                     <tbody id="edit_householdDetails">
-                                        <!-- Table rows will be populated dynamically via AJAX -->
+                                    <!-- Table rows will be populated dynamically via AJAX -->
                                     </tbody>
                                 </table>
                             </div>
@@ -642,7 +638,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary float-end"  data-bs-dismiss="modal" id="edit_close_modal">Close</button>
+                        <button type="button" class="btn btn-secondary float-end"  data-bs-dismiss="modal" id="edit_close_modal">Cancel</button>
                         <button type="submit"  id="edit_btnSubmit" class="btn btn-primary">Update</button>
                     </div>
                 </form>
@@ -650,331 +646,316 @@
         </div>
     </div>
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
 
-{{-- AJAX --}}
-<script>
-    $(document).ready(function () {
+    {{-- AJAX --}}
+    <script>
+        $(document).ready(function () {
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        fetch();
-
-        // Add event listener for when the modal is about to be hidden
-        $('#create').on('hide.bs.modal', function () {
-            // Remove the modal backdrop
-            $('.modal-backdrop').remove();
-            // Reset modal styles
-            $('#create').css('display', 'none');
-            $('body').removeClass('modal-open');
-        });
-
-        // Add event listener for when the modal is shown
-        $('#create').on('shown.bs.modal', function () {
-            // Reset modal styles
-            $('#create').css('display', 'block');
-            $('body').addClass('modal-open');
-        });
-
-        $('#create_family_member').on('submit',function (e) {
-
-            e.preventDefault();
-            $("#btnSubmit").text('Submitting. . .');
-            $('#btnSubmit').attr("disabled", true);
-
-            var form = this; //FORM
-            $.ajax({
-                url:$(form).attr('action'),
-                method:$(form).attr('method'),
-                data: new FormData(form),
-                processData: false,
-                dataType: "json",
-                contentType:false,
-                beforeSend: function(){
-                    //Before Sending The Form
-                    $(form).find('span.error-text').text('')
-                },
-                success: function(response) {
-                    if(response.code == 0)
-                    {
-                        $('#btnSubmit').removeAttr("disabled"); // removing disabled button
-                        //The Error Message Will Append
-                        $.each(response.error, function(prefix, val){
-                            $(form).find('span.'+prefix+'_error').text(val[0]);
-                        });
-                        $('#btnSubmit').text('Submit');
-
-                    }
-                    else
-                    {
-                        $(form)[0].reset(); // TO REST FORM
-                        $('#btnSubmit').removeAttr("disabled"); // removing disabled button
-                        $('#btnSubmit').text('Submit');   //change the text to normal
-                        fetch();
-                        // SWEETALERT
-                        Swal.fire({
-
-                            icon: 'success',
-                            title: 'Created Successfully',
-                            showConfirmButton: false,
-                            timer: 1700,
-                            timerProgressBar: true,
-
-                        });
-
-                        $('#create').modal('hide'); // Close the modal
-
-
-                    }
-                    $('#close_modal').on('click', function () {
-                        $(form)[0].reset();
-                        $(form).find('span.error-text').text('');
-                    });
-
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-        });
 
-        function fetch(){
-            $.ajax({
-                url: '{{ route('familyprofile.fetch') }}',
-                method: 'GET',
-                success: function(response) {
-                   $("#show_all_data").html(response);
-                    $('#sample').DataTable({
-                        order: [0, 'desc']
-                    });
-                }
+            fetch();
+
+            // Add event listener for when the modal is about to be hidden
+            $('#create').on('hide.bs.modal', function () {
+                // Remove the modal backdrop
+                $('.modal-backdrop').remove();
+                // Reset modal styles
+                $('#create').css('display', 'none');
+                $('body').removeClass('modal-open');
             });
-        }
 
-        $(document).on('click', '.view', function(e) {
-
-            e.preventDefault();
-            let id = $(this).attr('id');
-            $.ajax({
-            url: '{{ route('familyprofile.view') }}',
-            method: 'GET',
-            data: {
-                id: id,
-                _token: '{{ csrf_token() }}'
-            },
-            success: function(response) {
-                $("#id").val(response.id);
-                $("#firstname").val(response.firstname);
-                $("#lastname").val(response.lastname);
-                $("#middlename").val(response.middlename);
-                $("#address").val(response.address);
-                $("#birthdate").val(response.birthdate);
-                $("#age").val(response.age);
-                $("#birthdate").val(response.birthdate);
-                $("#civil_status").val(response.civil_status);
-                $("#birthdate").val(response.birthdate);
-                $("#monthly_income").val(response.monthly_income);
-                $("#occupation").val(response.occupation);
-                $("#educational_level").val(response.educational_level);
-                $("#spouse_name").val(response.spouse_name);
-                $("#spouse_age").val(response.spouse_age);
-                $("#spouse_education_level").val(response.spouse_education_level);
-                $("#spouse_occupation").val(response.spouse_occupation);
-                $("#spouse_monthly_income").val(response.spouse_monthly_income);
-                $("#no_households").val(response.no_households);
-                $("#no_family").val(response.no_family);
-                $("#preview_family_profile_image").html( `<img src="storage/family/profile/images/${response.image}" class="img-fluid img-thumbnail">`);
-                $("#family_profile_image").val(response.family_profile_image);
-                $("#occupancy_status").val(response.occupancy_status);
-                $("#occupancy_period").val(response.occupancy_period);
-                $("#interview_date").val(response.interview_date);
-
-
-                $("#householdDetails").empty();
-
-                response.households.forEach(function(household) {
-                    var householdHtml = '<tr>' +
-                        '<td>' + household.name + '</td>' +
-                        '<td>' + household.age + '</td>' +
-                        '<td>' + household.sex + '</td>' +
-                        '<td>' + household.relationship + '</td>' +
-                        '<td>' + household.educational_level + '</td>' +
-                        '<td>' + household.occupation + '</td>' +
-                        '</tr>';
-
-                    $("#householdDetails").append(householdHtml);
-                });
-
-            }
+            // Add event listener for when the modal is shown
+            $('#create').on('shown.bs.modal', function () {
+                // Reset modal styles
+                $('#create').css('display', 'block');
+                $('body').addClass('modal-open');
             });
-        });
 
-        $(document).on('click', '.delete', function(e) {
-            e.preventDefault();
-            let id = $(this).attr('id');
-            let csrf = '{{ csrf_token() }}';
-            var reader = new FileReader();
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            })
-            .then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: '{{ route('familyprofile.delete') }}',
-                        method: 'delete',
-                        data: {
-                            id: id,
-                            _token: csrf
-                        },
-                        success: function(response) {
-                            console.log(response);
+            $('#create_family_member').on('submit',function (e) {
+
+                e.preventDefault();
+                $("#btnSubmit").text('Submitting. . .');
+                $('#btnSubmit').attr("disabled", true);
+
+                var form = this; //FORM
+                $.ajax({
+                    url:$(form).attr('action'),
+                    method:$(form).attr('method'),
+                    data: new FormData(form),
+                    processData: false,
+                    dataType: "json",
+                    contentType:false,
+                    beforeSend: function(){
+                        //Before Sending The Form
+                        $(form).find('span.error-text').text('')
+                    },
+                    success: function(response) {
+                        if(response.code == 0)
+                        {
+                            $('#btnSubmit').removeAttr("disabled"); // removing disabled button
+                            //The Error Message Will Append
+                            $.each(response.error, function(prefix, val){
+                                $(form).find('span.'+prefix+'_error').text(val[0]);
+                            });
+                            $('#btnSubmit').text('Submit');
+
+                        }
+                        else
+                        {
+                            $(form)[0].reset(); // TO REST FORM
+                            $('#btnSubmit').removeAttr("disabled"); // removing disabled button
+                            $('#btnSubmit').text('Submit');   //change the text to normal
                             fetch();
+                            // SWEETALERT
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Deleted Successfully.',
-                                showConfirmButton: false,
-                                timer: 1700,
-                            })
+                                title: 'Success',
+                                text: 'Household Profile has been created successfully',
+                            });
+
+                            $('#create').modal('hide'); // Close the modal
                         }
-                    });
-                }
-            })
-        });
-
-        $(document).on('click', '.edit', function(e) {
-            e.preventDefault();
-            let id = $(this).attr('id');
-            $.ajax({
-            url: '{{ route('familyprofile.edit') }}',
-            method: 'GET',
-            data: {
-                id: id,
-                _token: '{{ csrf_token() }}'
-            },
-            success: function(response) {
-                $("#edit_id").val(response.id);
-                $("#edit_firstname").val(response.firstname);
-                $("#edit_lastname").val(response.lastname);
-                $("#edit_middlename").val(response.middlename);
-                $("#edit_address").val(response.address);
-                $("#edit_birthdate").val(response.birthdate);
-                $("#edit_age").val(response.age);
-                $("#edit_birthdate").val(response.birthdate);
-                $("#edit_civil_status").val(response.civil_status);
-                $("#edit_birthdate").val(response.birthdate);
-                $("#edit_monthly_income").val(response.monthly_income);
-                $("#edit_occupation").val(response.occupation);
-                $("#edit_educational_level").val(response.educational_level);
-                $("#edit_spouse_name").val(response.spouse_name);
-                $("#edit_spouse_age").val(response.spouse_age);
-                $("#edit_spouse_education_level").val(response.spouse_education_level);
-                $("#edit_spouse_occupation").val(response.spouse_occupation);
-                $("#edit_spouse_monthly_income").val(response.spouse_monthly_income);
-                $("#edit_no_households").val(response.no_households);
-                $("#edit_no_family").val(response.no_family);
-                $("#edit_preview_family_profile_image").html( `<img src="storage/family/profile/images/${response.image}" class="img-fluid img-thumbnail">`);
-                $("#edit_family_profile_image").val(response.family_profile_image);
-                $("#edit_occupancy_status").val(response.occupancy_status);
-                $("#edit_occupancy_period").val(response.occupancy_period);
-                $("#edit_interview_date").val(response.interview_date);
-
-
-                $("#edit_householdDetails").empty();
-
-                response.households.forEach(function(household) {
-                    var householdHtml = '<tr>' +
-                        '<td> <input type="text" class="form-control" placeholder="Name" name="inputs[0][name]" value="' + household.name + '"></td>' +
-                        '<td> <input type="number" class="form-control" placeholder="Age" name="inputs[0][age]" value="' + household.age + '"></td>' +
-                        '<td><select class="form-select" aria-label="Sex" name="inputs[0][sex]">' +
-                                '<option value="male"' + (household.sex === 'male' ? ' selected' : '') + '>Male</option>' +
-                                '<option value="female"' + (household.sex === 'female' ? ' selected' : '') + '>Female</option>' +
-                            '</select> </td>' +
-                        '<td><input type="text" class="form-control" placeholder="Relationship" name="inputs[0][relationship]" value="' + household.relationship + '"></td>' +
-                        '<td><input type="text" class="form-control" placeholder="Education level" name="inputs[0][educational_level]" value="' + household.educational_level + '"></td>' +
-                        '<td><input type="text" class="form-control" placeholder="Occupation" name="inputs[0][occupation]" value="' + household.occupation + '"></td>' +
-                        '</tr>';
-
-                    $("#edit_householdDetails").append(householdHtml);
-                });
-
-            }
-            });
-        });
-
-        $("#edit_data").on('submit', function (e) {
-            e.preventDefault();
-            $("#edit_btnSubmit").text('Updating . . . ');
-            $('#edit_btnSubmit').attr("disabled", true);
-            var form = this;
-
-            $.ajax({
-                url:$(form).attr('action'),
-                method:$(form).attr('method'),
-                data: new FormData(form),
-                processData: false,
-                dataType: "json",
-                contentType:false,
-                beforeSend: function(){
-
-                   $(form).find('span.error-text').text('');
-
-                },
-                success: function (response) {
-
-                    if(response.code == 0){
-                        $('#edit_btnSubmit').removeAttr("disabled");
-
-                        $.each(response.error, function(prefix, val){
-                            $(form).find('span.'+prefix+'_error').text(val[0]);
+                        $('#close_modal').on('click', function () {
+                            $(form)[0].reset();
+                            $(form).find('span.error-text').text('');
                         });
 
-                        $("#edit_btnSubmit").text('Update');
+                    }
+                });
+            });
+
+            function fetch(){
+                $.ajax({
+                    url: '{{ route('familyprofile.fetch') }}',
+                    method: 'GET',
+                    success: function(response) {
+                        $("#show_all_data").html(response);
+                        $('#sample').DataTable({
+                            order: [0, 'desc']
+                        });
+                    }
+                });
+            }
+
+            $(document).on('click', '.view', function(e) {
+                e.preventDefault();
+                let id = $(this).attr('id');
+                $.ajax({
+                    url: '{{ route('familyprofile.view') }}',
+                    method: 'GET',
+                    data: {
+                        id: id,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        $("#id").val(response.id);
+                        $("#firstname").val(response.firstname);
+                        $("#lastname").val(response.lastname);
+                        $("#middlename").val(response.middlename);
+                        $("#address").val(response.address);
+                        $("#birthdate").val(response.birthdate);
+                        $("#age").val(response.age);
+                        $("#birthdate").val(response.birthdate);
+                        $("#civil_status").val(response.civil_status);
+                        $("#birthdate").val(response.birthdate);
+                        $("#monthly_income").val(response.monthly_income);
+                        $("#occupation").val(response.occupation);
+                        $("#educational_level").val(response.educational_level);
+                        $("#spouse_name").val(response.spouse_name);
+                        $("#spouse_age").val(response.spouse_age);
+                        $("#spouse_education_level").val(response.spouse_education_level);
+                        $("#spouse_occupation").val(response.spouse_occupation);
+                        $("#spouse_monthly_income").val(response.spouse_monthly_income);
+                        $("#no_households").val(response.no_households);
+                        $("#no_family").val(response.no_family);
+                        $("#preview_family_profile_image").html( `<img src="storage/family/profile/images/${response.image}" class="img-fluid img-thumbnail">`);
+                        $("#family_profile_image").val(response.family_profile_image);
+                        $("#occupancy_status").val(response.occupancy_status);
+                        $("#occupancy_period").val(response.occupancy_period);
+                        $("#interview_date").val(response.interview_date);
+                        $("#householdDetails").empty();
+
+                        response.households.forEach(function(household) {
+                            var householdHtml = '<tr>' +
+                                '<td>' + household.name + '</td>' +
+                                '<td>' + household.age + '</td>' +
+                                '<td>' + household.sex + '</td>' +
+                                '<td>' + household.relationship + '</td>' +
+                                '<td>' + household.educational_level + '</td>' +
+                                '<td>' + household.occupation + '</td>' +
+                                '</tr>';
+
+                            $("#householdDetails").append(householdHtml);
+                        });
 
                     }
-                    else{
+                });
+            });
 
-                        $(form)[0].reset();
-                        $('#edit_btnSubmit').removeAttr("disabled");
-                        $('#edit_btnSubmit').text('Update');
-                        fetch();
-                        $("#edit").modal('hide');
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Updated Successfully',
-                            showConfirmButton: false,
-                            timer: 1700,
-                            timerProgressBar: true,
+            $(document).on('click', '.delete', function(e) {
+                e.preventDefault();
+                let id = $(this).attr('id');
+                let csrf = '{{ csrf_token() }}';
+                var reader = new FileReader();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                })
+                    .then((result) => {
+                        if (result.isConfirmed) {
+                            $.ajax({
+                                url: '{{ route('familyprofile.delete') }}',
+                                method: 'delete',
+                                data: {
+                                    id: id,
+                                    _token: csrf
+                                },
+                                success: function(response) {
+                                    console.log(response);
+                                    fetch();
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Success',
+                                        text: 'House Profile has been deleted successfully',
+                                    })
+                                }
+                            });
+                        }
+                    })
+            });
 
-                        })
+            $(document).on('click', '.edit', function(e) {
+                e.preventDefault();
+                let id = $(this).attr('id');
+                $.ajax({
+                    url: '{{ route('familyprofile.edit') }}',
+                    method: 'GET',
+                    data: {
+                        id: id,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        $("#edit_id").val(response.id);
+                        $("#edit_firstname").val(response.firstname);
+                        $("#edit_lastname").val(response.lastname);
+                        $("#edit_middlename").val(response.middlename);
+                        $("#edit_address").val(response.address);
+                        $("#edit_birthdate").val(response.birthdate);
+                        $("#edit_age").val(response.age);
+                        $("#edit_birthdate").val(response.birthdate);
+                        $("#edit_civil_status").val(response.civil_status);
+                        $("#edit_birthdate").val(response.birthdate);
+                        $("#edit_monthly_income").val(response.monthly_income);
+                        $("#edit_occupation").val(response.occupation);
+                        $("#edit_educational_level").val(response.educational_level);
+                        $("#edit_spouse_name").val(response.spouse_name);
+                        $("#edit_spouse_age").val(response.spouse_age);
+                        $("#edit_spouse_education_level").val(response.spouse_education_level);
+                        $("#edit_spouse_occupation").val(response.spouse_occupation);
+                        $("#edit_spouse_monthly_income").val(response.spouse_monthly_income);
+                        $("#edit_no_households").val(response.no_households);
+                        $("#edit_no_family").val(response.no_family);
+                        $("#edit_preview_family_profile_image").html( `<img src="storage/family/profile/images/${response.image}" class="img-fluid img-thumbnail">`);
+                        $("#edit_family_profile_image").val(response.family_profile_image);
+                        $("#edit_occupancy_status").val(response.occupancy_status);
+                        $("#edit_occupancy_period").val(response.occupancy_period);
+                        $("#edit_interview_date").val(response.interview_date);
+
+
+                        $("#edit_householdDetails").empty();
+
+                        response.households.forEach(function(household) {
+                            var householdHtml = '<tr>' +
+                                '<td> <input type="text" class="form-control" placeholder="Name" name="inputs[0][name]" value="' + household.name + '"></td>' +
+                                '<td> <input type="number" class="form-control" placeholder="Age" name="inputs[0][age]" value="' + household.age + '"></td>' +
+                                '<td><select class="form-select" aria-label="Sex" name="inputs[0][sex]">' +
+                                '<option value="male"' + (household.sex === 'male' ? ' selected' : '') + '>Male</option>' +
+                                '<option value="female"' + (household.sex === 'female' ? ' selected' : '') + '>Female</option>' +
+                                '</select> </td>' +
+                                '<td><input type="text" class="form-control" placeholder="Relationship" name="inputs[0][relationship]" value="' + household.relationship + '"></td>' +
+                                '<td><input type="text" class="form-control" placeholder="Education level" name="inputs[0][educational_level]" value="' + household.educational_level + '"></td>' +
+                                '<td><input type="text" class="form-control" placeholder="Occupation" name="inputs[0][occupation]" value="' + household.occupation + '"></td>' +
+                                '</tr>';
+
+                            $("#edit_householdDetails").append(householdHtml);
+                        });
 
                     }
+                });
+            });
 
-                    $('#edit_close_modal').on('click', function () {
-                        $(form)[0].reset();
+            $("#edit_data").on('submit', function (e) {
+                e.preventDefault();
+                $("#edit_btnSubmit").text('Updating . . . ');
+                $('#edit_btnSubmit').attr("disabled", true);
+                var form = this;
+
+                $.ajax({
+                    url:$(form).attr('action'),
+                    method:$(form).attr('method'),
+                    data: new FormData(form),
+                    processData: false,
+                    dataType: "json",
+                    contentType:false,
+                    beforeSend: function(){
+
                         $(form).find('span.error-text').text('');
-                    });
-                }
+
+                    },
+                    success: function (response) {
+
+                        if(response.code == 0){
+                            $('#edit_btnSubmit').removeAttr("disabled");
+
+                            $.each(response.error, function(prefix, val){
+                                $(form).find('span.'+prefix+'_error').text(val[0]);
+                            });
+
+                            $("#edit_btnSubmit").text('Update');
+
+                        }
+                        else{
+
+                            $(form)[0].reset();
+                            $('#edit_btnSubmit').removeAttr("disabled");
+                            $('#edit_btnSubmit').text('Update');
+                            fetch();
+                            $("#edit").modal('hide');
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success',
+                                text: 'House Profile has been successfully updated',
+                            })
+                        }
+
+                        $('#edit_close_modal').on('click', function () {
+                            $(form)[0].reset();
+                            $(form).find('span.error-text').text('');
+                        });
+                    }
+                });
             });
         });
+    </script>
 
-    });
-</script>
+    <script>
+        var i = 0;
+        $("#add").click(function(){
+            ++i;
 
-<script>
-    var i = 0;
-    $("#add").click(function(){
-        ++i;
+            $('#repeater').append(
 
-        $('#repeater').append(
-
-            `<tr>
+                `<tr>
                 <td>
                     <input type="text" name="inputs[`+i+`][name]" placeholder="Name" class="form-control"/>
                 </td>
@@ -994,47 +975,41 @@
              </tr>`);
 
 
-    });
-
-   $(document).on('click', '.remove-table-row', function(){
-        $(this).parents('tr').remove();
-   });
-</script>
-
-{{-- For the preview of image --}}
-<script>
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const imageInput = document.getElementById('imageInput');
-        const previewImage = document.getElementById('previewImage');
-
-        imageInput.addEventListener('change', function () {
-            const file = this.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-
-                reader.addEventListener('load', function () {
-                    previewImage.src = reader.result;
-                    previewImage.style.display = 'block';
-                });
-
-                reader.readAsDataURL(file);
-            } else {
-                // If no file is selected, display a text message
-                previewImage.src = ''; // Clear any existing image
-                previewImage.alt = 'No Image Choosen';
-                previewImage.style.display = 'block';
-            }
-
         });
-    });
 
-</script>
+        $(document).on('click', '.remove-table-row', function(){
+            $(this).parents('tr').remove();
+        });
+    </script>
 
+    {{-- For the preview of image --}}
+    <script>
 
+        document.addEventListener('DOMContentLoaded', function () {
+            const imageInput = document.getElementById('imageInput');
+            const previewImage = document.getElementById('previewImage');
 
+            imageInput.addEventListener('change', function () {
+                const file = this.files[0];
 
+                if (file) {
+                    const reader = new FileReader();
 
+                    reader.addEventListener('load', function () {
+                        previewImage.src = reader.result;
+                        previewImage.style.display = 'block';
+                    });
+
+                    reader.readAsDataURL(file);
+                } else {
+                    // If no file is selected, display a text message
+                    previewImage.src = ''; // Clear any existing image
+                    previewImage.alt = 'No Image Choosen';
+                    previewImage.style.display = 'block';
+                }
+            });
+        });
+
+    </script>
 @endsection
 
