@@ -304,36 +304,6 @@ class FamilyProfileController extends Controller
 
                 // ]);
 
-                $request->validate([
-                    'inputs.*.name' => 'required',
-                    'inputs.*.age' => 'required',
-                    'inputs.*.sex' => 'required',
-                    'inputs.*.relationship' => 'required',
-                    'inputs.*.occupation' => 'required',
-                    'inputs.*.educational_level' => 'required'
-                ]);
-
-                $updateData = $request->inputs; // Assuming inputs are properly formatted
-                $editId = $request->edit_id;
-
-                foreach ($updateData as $data) {
-                    $householdId = $data[$editId];
-                    $household = Household::find($householdId);
-
-                    if ($household && $household->family_profile_id == $editId) {
-                        $household->update([
-                            'name' => $data['name'],
-                            'age' => $data['age'],
-                            'sex' => $data['sex'],
-                            'relationship' => $data['relationship'],
-                            'occupation' => $data['occupation'],
-                            'educational_level' => $data['educational_level']
-                        ]);
-                    }
-                }
-
-
-                dd($household);
 
 
 
