@@ -33,7 +33,7 @@ return new class extends Migration
             $table->integer('no_family')->nullable();
             $table->string('households_members')->nullable();
             $table->string('occupancy_status')->nullable();
-            $table->string('occupany_period')->nullable();
+            $table->string('occupancy_period')->nullable();
             $table->date('interview_date')->nullable();
             $table->timestamps();
         });

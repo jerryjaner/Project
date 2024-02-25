@@ -111,18 +111,8 @@
 
 <!-- ./wrapper -->
 
-<!-- REQUIRED SCRIPTS -->
 
-{{-- <script>
-    $('table').DataTable({
-        "paging": true, // Enable pagination
-        "searching": true, // Enable search bar
-        "ordering": true // Disable sorting
-        });
-</script>
- --}}
-<!-- AdminLTE App -->
-
+<!-- AdminLTE App -->x
 {{-- @vite('resources/js/app.js') --}}
 
 @yield('scripts')
