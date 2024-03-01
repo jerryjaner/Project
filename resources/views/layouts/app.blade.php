@@ -8,7 +8,7 @@
     <title>CRUD App Laravel 8 & Ajax</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script> --}}
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons CSS CDN -->
@@ -16,6 +16,8 @@
      <!-- Google Font: Source Sans Pro -->
      <link rel="stylesheet"
      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+     <!-- Include ApexCharts CSS file -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.26.0/dist/apexcharts.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <!-- Theme style -->
@@ -46,11 +48,11 @@
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{ Auth::user()->name }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" style="left: inherit; right: 0px;">
-                    <a href="{{ route('profile.show') }}" class="dropdown-item">
+                    <a  href="{{ route('profile.show') }}" class="dropdown-item">
                         <i class="mr-2 fas fa-file"></i>
                         {{ __('My profile') }}
                     </a>
@@ -76,7 +78,7 @@
             <img src="{{ asset('images/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                  class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">AdminLTE 3</span>
+            <span class="brand-text font-weight-light">AdminLTE</span>
         </a>
 
         @include('layouts.navigation')
@@ -105,27 +107,23 @@
             Anything you want
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2024 <a href="{{ asset('home') }}">Sample Website</a>.</strong> All rights reserved.
     </footer>
 </div>
 
 <!-- ./wrapper -->
 
 
-<!-- AdminLTE App -->x
+<!-- AdminLTE App -->
 {{-- @vite('resources/js/app.js') --}}
 
 @yield('scripts')
-
 <script src="{{ asset('js/adminlte.min.js') }}" defer></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-kJXBGTfXP4Vn9I3b4lEfFVVP6wh9aoeY1z9HAU3Ff6bmgFJ/6X7Z6Zf5eVTUE6nC" crossorigin="anonymous"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
-
 
 </body>
 

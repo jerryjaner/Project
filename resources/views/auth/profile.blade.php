@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Content Header (Page header) -->
-    <div class="content-header">
+    {{-- <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
@@ -10,23 +10,30 @@
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
-    </div>
+    </div> --}}
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="content">
+    <div class="content-header">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="card">
-
                         <form action="{{ route('profile.update') }}" method="POST">
                             @csrf
                             @method('PUT')
-
+                            <div class="card-header">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <h4 class="m-0">{{ __('My profile') }}</h4>
+                                        </div><!-- /.col -->
+                                    </div><!-- /.row -->
+                                </div><!-- /.container-fluid -->
+                            </div>
                             <div class="card-body">
 
-                                <div class="input-group mb-3">
+                                <div class="input-group mb-3 col-lg-6">
                                     <input type="text" name="name"
                                            class="form-control @error('name') is-invalid @enderror"
                                            placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}" required>
@@ -42,7 +49,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="input-group mb-3">
+                                <div class="input-group mb-3 col-lg-6">
                                     <input type="email" name="email"
                                            class="form-control @error('email') is-invalid @enderror"
                                            placeholder="{{ __('Email') }}" value="{{ old('email', auth()->user()->email) }}" required>
@@ -58,7 +65,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="input-group mb-3">
+                                <div class="input-group mb-3 col-lg-6">
                                     <input type="password" name="password"
                                            class="form-control @error('password') is-invalid @enderror"
                                            placeholder="{{ __('New password') }}">
@@ -74,7 +81,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="input-group mb-3">
+                                <div class="input-group mb-3 col-lg-6">
                                     <input type="password" name="password_confirmation"
                                            class="form-control @error('password_confirmation') is-invalid @enderror"
                                            placeholder="{{ __('New password confirmation') }}"
@@ -85,12 +92,12 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="">
+                                    <button type="submit" class="btn btn-primary ml-2">{{ __('Submit') }}</button>
+                                </div>
                             </div>
 
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-                            </div>
+
                         </form>
                     </div>
                 </div>

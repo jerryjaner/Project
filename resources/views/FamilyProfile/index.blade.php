@@ -1037,7 +1037,6 @@
 
     function clearInputs() {
         var inputs = document.getElementsByClassName('form-control');
-        const errorSpan = document.querySelector('.text-danger.error-text');
 
         for (var i = 0; i < inputs.length; i++) {
             inputs[i].value = '';

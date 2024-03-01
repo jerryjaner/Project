@@ -19,9 +19,9 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <div class="alert alert-info">
+                    {{-- <div class="alert alert-info">
                         Sample table page
-                    </div>
+                    </div> --}}
 
                     <div class="card">
                         <div class="card-body p-0">
@@ -45,9 +45,9 @@
                         </div>
                         <!-- /.card-body -->
 
-                        <div class="card-footer clearfix">
+                        {{-- <div class="card-footer clearfix">
                             {{ $users->links() }}
-                        </div>
+                        </div> --}}
                     </div>
 
                 </div>
