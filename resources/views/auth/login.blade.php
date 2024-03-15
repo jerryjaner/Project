@@ -3,8 +3,8 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">
+            <div class="card card-outline card-primary">
+                {{-- <div class="card-header">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
@@ -12,31 +12,14 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-body">
-                    {{-- <form>
-                        <div class="form-group">
-                            <label>Sign In Your email</label>
-                            <input name="" class="form-control" placeholder="Email" type="email">
-                        </div> <!-- form-group// -->
-                        <div class="form-group">
-                            <a class="float-right" href="#">Forgot?</a>
-                            <label>Your password</label>
-                            <input class="form-control" placeholder="******" type="password">
-                        </div> <!-- form-group// -->
-                        <div class="form-group">
-                        <div class="checkbox">
-                        <label> <input type="checkbox"> Save password </label>
-                        </div> <!-- checkbox .// -->
-                        </div> <!-- form-group// -->
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-block"> Login  </button>
-                        </div> <!-- form-group// -->
-                    </form> --}}
+                </div> --}}
+
+                <div class="card-body login-card-body">
+                    <p class="login-box-msg">{{ __('Sign In') }}</p>
                     <form action="{{ route('login') }}" method="post">
                         @csrf
-
                         <div class="input-group mb-3">
+                            <label class="input-group" for="email">Enter email</label>
                             <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="{{ __('Email') }}" required autofocus>
                             <div class="input-group-append">
                                 <div class="input-group-text">
@@ -51,6 +34,7 @@
                         </div>
 
                         <div class="input-group mb-3">
+                            <label class="input-group" for="password">Enter password</label>
                             <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="{{ __('Password') }}" required>
                             <div class="input-group-append">
                                 <div class="input-group-text">
@@ -64,10 +48,8 @@
                             @enderror
                         </div>
 
-
-
-                        <div class="row">
-                            <div class="col-8">
+                        <div class="row mb-2">
+                            <div class="col-6 d-flex justify-content-start align-items-center">
                                 <div class="icheck-primary">
                                     <input type="checkbox" id="remember" name="remember">
                                     <label for="remember">
@@ -76,20 +58,18 @@
                                 </div>
                             </div>
                             <!-- /.col -->
-                            <div class="col-4">
+                            <div class="col-6 d-flex justify-content-end align-items-center">
                                 @if (Route::has('password.request'))
-                                <p class="fs-6">
                                     <a href="{{ route('password.request') }}">{{ __('Forgot Your Password?') }}</a>
-                                </p>
-
-
                                 @endif
                             </div>
                             <!-- /.col -->
                         </div>
 
-                        <div class="row p-2">
-                            <button type="submit" class="btn btn-primary btn-block m-0">{{ __('Login') }}</button>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button type="submit" class="btn btn-primary btn-block m-0">{{ __('Login') }}</button>
+                            </div>
                         </div>
                     </form>
 

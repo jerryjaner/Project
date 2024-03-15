@@ -25,7 +25,7 @@
                             </button>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive m-0 p-2" id="show_all_data">
+                            <div class="table-responsive" id="show_all_data">
                                 <h3 class="text-center text-secondary my-5">Loading...</h3>
                             </div>
                         </div>
@@ -749,7 +749,13 @@
                 success: function(response) {
                    $("#show_all_data").html(response);
                     $('#sample').DataTable({
-                        order: [0, 'desc']
+                        "paging": true, // Enable pagination
+            "searching": true, // Enable search bar
+            "ordering": false, // Disable sorting
+            "language": { "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/English.json" },
+            "stateSave": true,
+            "responsive": true,
+
                     });
                 }
             });

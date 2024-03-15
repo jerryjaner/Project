@@ -123,7 +123,7 @@ class FamilyProfileController extends Controller
         $i = 1;
         $output = '';
         if ($datas->count() > 0) {
-            $output .= '<table class="table table-striped" id="sample">
+            $output .= '<table class="table table-hover" id="sample">
                     <thead>
                     <tr>
                         <th>No</th>
