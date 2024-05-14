@@ -123,48 +123,38 @@ class FamilyProfileController extends Controller
         $i = 1;
         $output = '';
         if ($datas->count() > 0) {
-            $output .= '<table class="table table-striped align-end" id="sample">
-                    <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Fullname</th>
-                        <th>Address</th>
-                        <th>Birthdate</th>
-                        <th>Age</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>';
+            $output .= '<div class="table-responsive">
+            <table class="table table-striped align-end" id="sample">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Fullname</th>
+                    <th>Address</th>
+                    <th>Birthdate</th>
+                    <th>Age</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>';
+
             foreach ($datas as $data) {
-                $output .= '<tr>
-                        <td>' . $i++ . '</td>
-                        <td>' . $data->firstname . ' '. $data->middlename .' ' . $data->lastname . '</td>
-                        <td>' . $data->address . '</td>
-                        <td>' . $data->birthdate . '</td>
-                        <td>' . $data->age . '</td>';
+            $output .= '<tr>
+                            <td>' . $i++ . '</td>
+                            <td>' . $data->firstname . ' '. $data->middlename .' ' . $data->lastname . '</td>
+                            <td>' . $data->address . '</td>
+                            <td>' . $data->birthdate . '</td>
+                            <td>' . $data->age . '</td>';        
 
-
-                // $output .= '<td>';
-                // foreach ($data->households as $household) {
-                //     $output .= 'Name: ' . $household->name . '<br>';
-                //     $output .= 'Age: ' . $household->name . '<br>';
-                //     $output .= 'Gender: ' . $household->age . '<br>';
-                //     $output .= 'Education Level: ' . $household->educational_level . '<br>';
-                //     $output .= 'Relationship: ' . $household->relationship . '<br>';
-                //     $output .= 'Occupation: ' . $household->occupation . '<br>';
-                //     $output .= '<br>';
-                // }
-                // $output .= '</td>';
-
-                $output .= '<td>
-                        <a href="#" id="' . $data->id . '" class="text-default  btn btn-success btn-sm mx-1 edit" data-bs-toggle="modal" data-bs-target="#edit">Edit</a>
-                        <a href="#" id="' . $data->id . '" class="text-default  btn btn-primary btn-sm mx-1 view" data-bs-toggle="modal" data-bs-target="#view">View</a>
-                        <a href="#" id="' . $data->id . '" class="text-default btn btn-danger btn-sm mx-1 delete">Delete</a>
-                        </td>
-                    </tr>';
+            $output .= '<td>
+                            <a href="#" id="' . $data->id . '" class="text-default  btn btn-success btn-sm mx-1 mb-1 edit" data-bs-toggle="modal" data-bs-target="#edit">Edit</a>
+                            <a href="#" id="' . $data->id . '" class="text-default  btn btn-primary btn-sm mx-1 mb-1 view" data-bs-toggle="modal" data-bs-target="#view">View</a>
+                            <a href="#" id="' . $data->id . '" class="text-default btn btn-danger btn-sm mx-1 mb-1 delete">Delete</a>
+                            </td>
+                        </tr>';
             }
 
-            $output .= '</tbody></table>';
+            $output .= '</tbody></table></div>';
+
             echo $output;
         }
         else {

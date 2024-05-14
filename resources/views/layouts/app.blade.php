@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
-    @yield('styles')
+    {{-- @yield('styles') --}}
+    @stack('styles')
 
     <style>
         .required::after {
@@ -102,7 +103,8 @@
 <!-- AdminLTE App -->
 {{-- @vite('resources/js/app.js') --}}
 
-@yield('scripts')
+{{-- @yield('scripts') --}}
+@stack('scripts')
 
 <script src="{{ asset('js/adminlte.min.js') }}" defer></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
