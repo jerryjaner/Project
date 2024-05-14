@@ -172,7 +172,7 @@
                                         <th>Gender</th>
                                         <th>Relationship</th>
                                         <th>Education Level</th>
-                                        <th>occupation</th>
+                                        <th>Occupation</th>
                                         <th>Action</th>
                                     </tr>
                                     <tr>
@@ -245,13 +245,12 @@
         </div>
     </div>
 
-
-    {{-- VIew --}}
+    {{-- View --}}
     <div class="modal fade" id="view" tabindex="-1" aria-labelledby="view"data-bs-backdrop="static" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centeredmodal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-primary" id="view">ViewHousehold/Family</h5>
+                    <h5 class="modal-title text-primary" id="view">View Household/Family</h5>
                 </div>
                 <form action="" method="" id="view_data" enctype="multipart/form-data">
                     @csrf
@@ -443,7 +442,6 @@
             </div>
         </div>
     </div>
-
 
     {{-- Edit --}}
     <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="edit"data-bs-backdrop="static" aria-hidden="true">
@@ -716,6 +714,8 @@
                                 icon: 'success',
                                 title: 'Success',
                                 text: 'Household Profile has been created successfully',
+                                showConfirmButton: false,
+                                timer: 1500,
                             });
 
                             $('#create').modal('hide'); // Close the modal
@@ -736,7 +736,7 @@
                     success: function(response) {
                         $("#show_all_data").html(response);
                         $('#sample').DataTable({
-                            order: [0, 'desc']
+                            order: [0, 'asc']
                         });
                     }
                 });
@@ -809,7 +809,8 @@
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText: 'Yes, delete it!',
+                   
                 })
                     .then((result) => {
                         if (result.isConfirmed) {
@@ -824,6 +825,8 @@
                                     console.log(response);
                                     fetch();
                                     Swal.fire({
+                                        showConfirmButton: false,
+                                        timer: 1500,
                                         icon: 'success',
                                         title: 'Success',
                                         text: 'House Profile has been deleted successfully',
@@ -876,15 +879,15 @@
 
                         response.households.forEach(function(household) {
                             var householdHtml = '<tr>' +
-                                '<td> <input type="text" class="form-control" placeholder="Name" name="inputs[0][name]" value="' + household.name + '"></td>' +
-                                '<td> <input type="number" class="form-control" placeholder="Age" name="inputs[0][age]" value="' + household.age + '"></td>' +
-                                '<td><select class="form-select" aria-label="Sex" name="inputs[0][sex]">' +
-                                '<option value="male"' + (household.sex === 'male' ? ' selected' : '') + '>Male</option>' +
-                                '<option value="female"' + (household.sex === 'female' ? ' selected' : '') + '>Female</option>' +
+                                '<td> <input type="text" class="form-control" placeholder="Name" name="inputs[0][name]" value="' + household.name + '" readonly></td>' +
+                                '<td> <input type="number" class="form-control" placeholder="Age" name="inputs[0][age]" value="' + household.age + '" readonly></td>' +
+                                '<td><select class="form-select" aria-label="Sex" name="inputs[0][sex]" disabled>' +
+                                '<option  value="male" ' + (household.sex === 'male' ? ' selected' : '') + ' >Male</option>' +
+                                '<option  value="female"' + (household.sex === 'female' ? ' selected' : '') + '>Female</option>' +
                                 '</select> </td>' +
-                                '<td><input type="text" class="form-control" placeholder="Relationship" name="inputs[0][relationship]" value="' + household.relationship + '"></td>' +
-                                '<td><input type="text" class="form-control" placeholder="Education level" name="inputs[0][educational_level]" value="' + household.educational_level + '"></td>' +
-                                '<td><input type="text" class="form-control" placeholder="Occupation" name="inputs[0][occupation]" value="' + household.occupation + '"></td>' +
+                                '<td><input type="text" class="form-control" placeholder="Relationship" name="inputs[0][relationship]" value="' + household.relationship + '" readonly></td>' +
+                                '<td><input type="text" class="form-control" placeholder="Education level" name="inputs[0][educational_level]" value="' + household.educational_level + '" readonly></td>' +
+                                '<td><input type="text" class="form-control" placeholder="Occupation" name="inputs[0][occupation]" value="' + household.occupation + '" readonly></td>' +
                                 '</tr>';
 
                             $("#edit_householdDetails").append(householdHtml);
@@ -935,6 +938,8 @@
                                 icon: 'success',
                                 title: 'Success',
                                 text: 'House Profile has been successfully updated',
+                                showConfirmButton: false,
+                                timer: 1500,
                             })
                         }
 
@@ -1011,5 +1016,6 @@
         });
 
     </script>
+
 @endsection
 
